@@ -24,8 +24,8 @@ include_directories(SYSTEM
                     libs/glm/)
 
 file(GLOB VENDORS_SOURCES libs/glad/src/glad.c)
-file(GLOB_RECURSE PROJECT_HEADERS src/*.h)
-file(GLOB_RECURSE PROJECT_SOURCES src/*.cpp)
+file(GLOB_RECURSE GAME_HEADERS src/*.h)
+file(GLOB_RECURSE GAME_SOURCES src/*.cpp)
 #file(GLOB PROJECT_SHADERS src/graphics/*.comp
 #                          src/graphics/*.frag
 #                          src/graphics/*.geom
