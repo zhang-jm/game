@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+#include <graphics/incl/shader_loader.h>
+
 const int window_width = 1280;
 const int window_height = 800;
 
@@ -53,6 +55,10 @@ int main(int argc, char * argv[]) {
 	glfwSetKeyCallback(mWindow, key_callback);
 	glfwSetMouseButtonCallback(mWindow, mouse_click_callback);
 
+    ShaderLoader loader;
+    //loader.LoadShader("C:/Users/cocoa/Documents/game/src/graphics/shaders/playershader.vert", "C:/Users/cocoa/Documents/game/src/graphics/shaders/playershader.frag");
+    loader.LoadShader("../src/graphics/shaders/playershader.vert", "../src/graphics/shaders/playershader.frag");
+
 	// Rendering Loop
 	while (glfwWindowShouldClose(mWindow) == false) {
 		if (glfwGetKey(mWindow, GLFW_KEY_ESCAPE) == GLFW_PRESS)
@@ -61,6 +67,7 @@ int main(int argc, char * argv[]) {
 		// Background Fill Color
 		glClearColor(1.00f, 0.25f, 0.25f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
+
 
 		// Flip Buffers and Draw
 		glfwSwapBuffers(mWindow);
