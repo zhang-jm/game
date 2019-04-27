@@ -1,8 +1,5 @@
 #include "server.h"
 
-
-
-
 // TODO stubbed; JUZ
 Server::Server(const uint16_t port, const size_t num_clients)
   : game_started(true)

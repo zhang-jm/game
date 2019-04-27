@@ -1,12 +1,9 @@
 # Refreshing keyword: hud
 
-
 set(MAIN_COMMON_HEADER_DIR "src/main_loops/incl")
 
 set(SERVER_BASE "src/network/server")
 set(SERVER_HEADER_DIR "${SERVER_BASE}/incl")
-
-
 
 cmake_minimum_required(VERSION 3.0)
 project(Game)
@@ -30,8 +27,6 @@ include_directories(SYSTEM
                     libs/glad/include/
                     libs/glfw/include/
                     libs/glm/)
-
-
 
 file(GLOB VENDORS_SOURCES libs/glad/src/glad.c)
 file(GLOB_RECURSE GAME_HEADERS src/main_loops/incl/*.h)
@@ -65,10 +60,10 @@ add_definitions(-DGLFW_INCLUDE_NONE
 add_executable(${PROJECT_NAME}-Client ${PROJECT_SOURCES}
                                       ${PROJECT_HEADERS}
                                       ${PROJECT_CONFIGS}
-                                      ${VENDORS_SOURCES} main_loops/src/main.cpp)
+                                      ${VENDORS_SOURCES} src/main_loops/src/client_loop.cpp)
 
 add_executable(${PROJECT_NAME}-Server ${SERVER_SOURCES}
-                                      main_loops/src/server_loop.cpp)
+                                      src/main_loops/src/server_loop.cpp)
 
 ########################################
 # Libraries
@@ -101,3 +96,14 @@ set_target_properties(${PROJECT_NAME}-Client PROPERTIES
 
 set_target_properties(${PROJECT_NAME}-Server PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${PROJECT_NAME})
+
+########################################
+# Copy executables to source dir
+########################################
+add_custom_command(TARGET ${PROJECT_NAME}-Client 
+                   POST_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${PROJECT_NAME}-Client> ${PROJECT_SOURCE_DIR}/${PROJECT_NAME})
+
+add_custom_command(TARGET ${PROJECT_NAME}-Server 
+                   POST_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${PROJECT_NAME}-Server> ${PROJECT_SOURCE_DIR}/${PROJECT_NAME})

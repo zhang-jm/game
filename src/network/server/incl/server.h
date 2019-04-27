@@ -11,7 +11,8 @@
 - SYSTEM INCLUDES
 -----------------------------------*/
 
-#include<stdlib.h> //size_t
+#include <stdlib.h> //size_t
+#include <stdint.h>
 
 class Server {
   public:
