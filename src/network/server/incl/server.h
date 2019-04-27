@@ -7,9 +7,11 @@
 #define LOGGING          1
 
 
-#include "peer.h"
+/*---------------------------------
+- SYSTEM INCLUDES
+-----------------------------------*/
 
-
+#include<stdlib.h> //size_t
 
 class Server {
   public:
@@ -29,17 +31,22 @@ class Server {
     // End of player connection phase
     void close();
 
+    // stepping function
+    void step(const float dt);
+
+    // server loop
+    static void run_server(const uint16_t port, const size_t num_players);
     /*-------------------------------
     - Debugging functions
     ---------------------------------*/
 
-#ifdef DEBUG_MAZE
+#if DEBUG_MAZE
     void debug_maze();
 #endif
     /*-------------------------------
     - Logging functions
     ---------------------------------*/
-#ifdef LOGGING
+#if LOGGING
     void server_log();
 #endif
     // Clean up
@@ -50,7 +57,7 @@ class Server {
   private:
     bool          game_started;
     uint16_t      port;
-    Maze*         maze;
+    size_t        num_clients;
 
 };
 

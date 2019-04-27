@@ -3,13 +3,11 @@
 
 
 
-// Constructor
-// TODO not completed; JUZ
-Server::Server(const uint16_t port, const size_t max_clients)
+// TODO stubbed; JUZ
+Server::Server(const uint16_t port, const size_t num_clients)
   : game_started(true)
   , port(port)
-  , rpc_server(port)
-  , max_clients(max_clients)
+  , num_clients(num_clients)
 
   {
     init();
@@ -17,32 +15,36 @@ Server::Server(const uint16_t port, const size_t max_clients)
 
 
 
-  // Begin player connections phase
-void Server::Start(){
-  rpc_server.async_run(max_clients);
+// TODO stubbed ; JUZ
+void Server::open(){
   return;
 }
 
-
-// End of player connection phase
-void Server::Close(){
-  rpc_server.stop();
+// TODO stubbed ; JUZ
+void Server::close(){
   return;
 }
 
-void init(){
+// TODO stubbed ; JUZ
+void Server::init_maze(){
+  return;
+}
+
+// TODO stubbed ; JUZ
+void Server::init(){
   init_maze();
   return;
 }
 
-
-void init_maze(){
+// TODO stubbed ; JUZ
+// since this begins the server loop
+// declared static to avoid creating instance
+// of Server object in main loop
+void Server::run_server(const uint16_t port, const size_t num_players){
   return;
 }
-
-
 // TODO stubbed ; JUZ
-void clean_up(){
+void Server::clean_up(){
 
 }
 
