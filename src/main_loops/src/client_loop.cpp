@@ -1,15 +1,25 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 #include <iostream>
 
 #include <graphics/incl/shader_loader.h>
+#include <graphics/incl/model.h>
 
 const int window_width = 1280;
 const int window_height = 800;
 
 // number of subsamples per pixel
 const int samples = 4;
+
+glm::vec3 cam_pos(0.0f, 5.0f, 20.0f);		// e  | Position of camera
+glm::vec3 cam_look_at(0.0f, 0.0f, 0.0f);	// d  | This is where the camera looks at
+glm::vec3 cam_up(0.0f, 1.0f, 0.0f);			// up | What orientation "up" is
+
+glm::mat4 projection;
+glm::mat4 view;
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
@@ -56,8 +66,11 @@ int main(int argc, char * argv[]) {
 	glfwSetMouseButtonCallback(mWindow, mouse_click_callback);
 
     ShaderLoader loader;
-    //loader.LoadShader("C:/Users/cocoa/Documents/game/src/graphics/shaders/playershader.vert", "C:/Users/cocoa/Documents/game/src/graphics/shaders/playershader.frag");
-    loader.LoadShader("../src/graphics/shaders/playershader.vert", "../src/graphics/shaders/playershader.frag");
+
+    projection = glm::perspective(45.0f, (float)window_width / (float)window_height, 0.1f, 1000.0f);
+    view = glm::lookAt(cam_pos, cam_look_at, cam_up);
+
+    Model m(loader, "../models/cube/cube.obj", "../src/graphics/shaders/playershader.vert", "../src/graphics/shaders/playershader.frag");
 
 	// Rendering Loop
 	while (glfwWindowShouldClose(mWindow) == false) {
@@ -68,6 +81,7 @@ int main(int argc, char * argv[]) {
 		glClearColor(1.00f, 0.25f, 0.25f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
+        m.Render(view, projection);
 
 		// Flip Buffers and Draw
 		glfwSwapBuffers(mWindow);

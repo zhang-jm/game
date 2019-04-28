@@ -1,18 +1,23 @@
 # Refreshing keyword: hud
 
+cmake_minimum_required(VERSION 3.0)
+project(Game)
+
 set(MAIN_COMMON_HEADER_DIR "src/main_loops/incl")
 
 set(GRAPHICS_HEADER_DIR "src/graphics")
 set(SERVER_BASE "src/network/server")
 set(SERVER_HEADER_DIR "${SERVER_BASE}/incl")
 
-cmake_minimum_required(VERSION 3.0)
-project(Game)
-
 set(GLFW_BUILD_DOCS OFF)
 set(GLFW_BUILD_EXAMPLES OFF)
 set(GLFW_BUILD_TESTS OFF)
 add_subdirectory(libs/glfw)
+
+set(ASSIMP_BUILD_ASSIMP_TOOLS OFF)
+set(ASSIMP_BUILD_SAMPLES OFF)
+set(ASSIMP_BUILD_TESTS OFF)
+add_subdirectory(libs/assimp)
 
 if(MSVC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /std:c++17 /permissive- /experimental:external /external:anglebrackets /external:W0 /D NOMINMAX")
@@ -24,7 +29,7 @@ else()
 endif()
 
 include_directories(src/)
-include_directories(SYSTEM
+include_directories(libs/assimp/include/
                     libs/glad/include/
                     libs/glfw/include/
                     libs/glm/)
@@ -68,7 +73,7 @@ add_executable(${PROJECT_NAME}-Server ${SERVER_SOURCES}
 ########################################
 # Libraries
 ########################################
-target_link_libraries(${PROJECT_NAME}-Client glfw
+target_link_libraries(${PROJECT_NAME}-Client assimp glfw
                       ${GLFW_LIBRARIES} ${GLAD_LIBRARIES})
 
 ########################################
