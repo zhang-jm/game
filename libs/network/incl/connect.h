@@ -12,16 +12,22 @@
 #include<WS2tcpip.h>
 #else
 #include<sys/socket.h>
-#include<arpa/inet.h> //inet addr
+#include<arpa/inet.h> //inet addr inet_pton
 #include<sys/time.h> //FD_SET, FD_ISSET, FD_ZERO macros
+#include<netinet/in.h>
+#include<unistd.h> // usleep
 #endif
+
+#include<errno.h>
+#include <string>
+#include<vector>
 
 /*---------------------------------
 - Namespaces
 -----------------------------------*/
 using std::string;
 using std::vector;
-
+using std::max;
 
 #define PACKET_SIZE 512
 
@@ -32,56 +38,53 @@ enum connection_state {
   RECONNECTING
 };
 
-struct Send_Packet{
+struct Packet{
   uint32_t length;
-  char data[PACKET_SIZE]
+  char data[PACKET_SIZE];
 };
 
-
-struct Receive_Packet{
-  uint32_t length;
-  char data[512];
+struct Communication_Buffer{
+  Packet     player_stream;
+  Packet     server_stream;
 };
-
-class Mulitplayer_Connection{
+class Connection{
   public:
 
-    Connenction(uint16_t port, size_t num_players);
+    Connection(string ip_address, uint16_t port, size_t num_connections);
 
-    ~Conenction();
+    ~Connection();
 
-    bool server_network_setup(const string ip_address);
+    // Creates master socket binds and listens
+    bool server_network_setup();
 
-    bool server_connect(const string ip_address,const uint16_t port);
+    // Waits for incoming connections
+    bool server_connect(vector<int> &communication_sockets);
 
-    bool client_network_setup(const string ip_address);
+    // creates socket, sets up addr info
+    bool client_network_setup(int &communication_socket);
 
-    bool client_connect(const string ip_address,const uint16_t port);
+    bool client_connect(int &communication_socket);
 
     bool reconnect();
 
     bool disconnect();
 
-    bool send_packet(const Send_Packet& packet);
+    bool send_packet(const int socket, const Packet& packet);
 
-    bool receive_packet(const Receive_Packet& packet);
+    bool receive_packet(const int socket, const Packet& packet);
 
     connection_state state;
 
   private:
 
-    string        ip_address;
-    uint16_t      port;
-    size_t        num_players;
-    int           num_players_connected;
-    int           master_socket;
-    vector<int>   player_sockets;
-    sockaddr_in   player_addr;
-    sockaddr_in   server_addr;
-    fd_set        readfds;
-
-
-
+    string                ip_address;
+    uint16_t              port;
+    size_t                num_connections;
+    int                   num_connected;
+    int                   master_socket;
+    sockaddr_in           addr;
+    fd_set                readfds;
 };
+#endif
 
 

@@ -1,39 +1,35 @@
 #include "server.h"
 
-
-
-
-// TODO stubbed; JUZ
-Server::Server(const uint16_t port, const size_t num_players)
-  : game_started(true)
-  , multiplayer_connection(port, num_players)
-  {
+Server::Server(const string ip_address, const uint16_t port, const size_t num_connections)
+  : server_connection(ip_address, port, num_connections){
     init();
-  }
-
-
+}
 
 // Creates network
 // waits for client connection
-void Server::start(int num_players){
+bool Server::establish_network(vector<int> &communication_sockets){
 
   // binds and listens on master socket
   // updates the socket descriptors
-  if(!this->multiplayer_connection.multiplayer_network_setup()){
+  printf("Setting up server network...\n");
+  if(!this->server_connection.server_network_setup()){
     perror(" Multiplayer network setup failed!\n");
+    return false;
+  }
+  else{
+    // blocking call
+    // wait for incoming connections
+    if(!this->server_connection.server_connect(communication_sockets)){
+      perror(" Failed to connect to all players\n");
+      return false;
+    }
   }
 
-  // blocking call
-  // wait for incoming connections
-  if(!this->multiplayer_connection.multiplayer_connect()){
-    perror(" Failed to connect to all players\n");
-  }
-
-  return;
+  return true;
 }
 
 // TODO stubbed ; JUZ
-void Server::close(){
+void Server::teardown_network(){
   return;
 }
 
@@ -48,20 +44,20 @@ void Server::init(){
   return;
 }
 
-// TODO stubbed ; JUZ
-// since this begins the server loop
-// declared static to avoid creating instance
-// of Server object in main loop
-void Server::run_server(const uint16_t port, const size_t num_players){
+void Server::run_server(string ip_address, const uint16_t port,
+                        const size_t num_connections){
   // Create server instance
-  Server server(port, num_players);
+  Server server(ip_address, port, num_connections);
 
+  // Blocking call
   // Open connection and wait for players
-  server.start(num_players);
+  if(!server.establish_network(server.communication_sockets)){
+      perror("Could not establish server network\n");
+  }
 
+  printf("Server network setup entering core server loop...\n");
   // Server loop
-  while(true)
-  {
+  while(true){
     server.step(0.005);
   }
   return;

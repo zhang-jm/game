@@ -43,43 +43,43 @@ RM = /usr/local/Cellar/cmake/3.13.4/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/julyzamora/Desktop/Game/game
+CMAKE_SOURCE_DIR = /Users/julyzamora/Desktop/Game/game/libs/glfw
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/julyzamora/Desktop/Game/game
+CMAKE_BINARY_DIR = /Users/julyzamora/Desktop/Game/game/libs/glfw
 
 # Include any dependencies generated for this target.
-include libs/glfw/tests/CMakeFiles/title.dir/depend.make
+include tests/CMakeFiles/title.dir/depend.make
 
 # Include the progress variables for this target.
-include libs/glfw/tests/CMakeFiles/title.dir/progress.make
+include tests/CMakeFiles/title.dir/progress.make
 
 # Include the compile flags for this target's objects.
-include libs/glfw/tests/CMakeFiles/title.dir/flags.make
+include tests/CMakeFiles/title.dir/flags.make
 
-libs/glfw/tests/CMakeFiles/title.dir/title.c.o: libs/glfw/tests/CMakeFiles/title.dir/flags.make
-libs/glfw/tests/CMakeFiles/title.dir/title.c.o: libs/glfw/tests/title.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/julyzamora/Desktop/Game/game/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object libs/glfw/tests/CMakeFiles/title.dir/title.c.o"
+tests/CMakeFiles/title.dir/title.c.o: tests/CMakeFiles/title.dir/flags.make
+tests/CMakeFiles/title.dir/title.c.o: tests/title.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/julyzamora/Desktop/Game/game/libs/glfw/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object tests/CMakeFiles/title.dir/title.c.o"
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/tests && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/title.dir/title.c.o   -c /Users/julyzamora/Desktop/Game/game/libs/glfw/tests/title.c
 
-libs/glfw/tests/CMakeFiles/title.dir/title.c.i: cmake_force
+tests/CMakeFiles/title.dir/title.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/title.dir/title.c.i"
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/tests && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/julyzamora/Desktop/Game/game/libs/glfw/tests/title.c > CMakeFiles/title.dir/title.c.i
 
-libs/glfw/tests/CMakeFiles/title.dir/title.c.s: cmake_force
+tests/CMakeFiles/title.dir/title.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/title.dir/title.c.s"
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/tests && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/julyzamora/Desktop/Game/game/libs/glfw/tests/title.c -o CMakeFiles/title.dir/title.c.s
 
-libs/glfw/tests/CMakeFiles/title.dir/__/deps/glad.c.o: libs/glfw/tests/CMakeFiles/title.dir/flags.make
-libs/glfw/tests/CMakeFiles/title.dir/__/deps/glad.c.o: libs/glfw/deps/glad.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/julyzamora/Desktop/Game/game/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object libs/glfw/tests/CMakeFiles/title.dir/__/deps/glad.c.o"
+tests/CMakeFiles/title.dir/__/deps/glad.c.o: tests/CMakeFiles/title.dir/flags.make
+tests/CMakeFiles/title.dir/__/deps/glad.c.o: deps/glad.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/julyzamora/Desktop/Game/game/libs/glfw/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object tests/CMakeFiles/title.dir/__/deps/glad.c.o"
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/tests && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/title.dir/__/deps/glad.c.o   -c /Users/julyzamora/Desktop/Game/game/libs/glfw/deps/glad.c
 
-libs/glfw/tests/CMakeFiles/title.dir/__/deps/glad.c.i: cmake_force
+tests/CMakeFiles/title.dir/__/deps/glad.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/title.dir/__/deps/glad.c.i"
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/tests && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/julyzamora/Desktop/Game/game/libs/glfw/deps/glad.c > CMakeFiles/title.dir/__/deps/glad.c.i
 
-libs/glfw/tests/CMakeFiles/title.dir/__/deps/glad.c.s: cmake_force
+tests/CMakeFiles/title.dir/__/deps/glad.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/title.dir/__/deps/glad.c.s"
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/tests && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/julyzamora/Desktop/Game/game/libs/glfw/deps/glad.c -o CMakeFiles/title.dir/__/deps/glad.c.s
 
@@ -91,24 +91,24 @@ title_OBJECTS = \
 # External object files for target title
 title_EXTERNAL_OBJECTS =
 
-libs/glfw/tests/title.app/Contents/MacOS/title: libs/glfw/tests/CMakeFiles/title.dir/title.c.o
-libs/glfw/tests/title.app/Contents/MacOS/title: libs/glfw/tests/CMakeFiles/title.dir/__/deps/glad.c.o
-libs/glfw/tests/title.app/Contents/MacOS/title: libs/glfw/tests/CMakeFiles/title.dir/build.make
-libs/glfw/tests/title.app/Contents/MacOS/title: libs/glfw/src/libglfw3.a
-libs/glfw/tests/title.app/Contents/MacOS/title: libs/glfw/tests/CMakeFiles/title.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/julyzamora/Desktop/Game/game/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable title.app/Contents/MacOS/title"
+tests/title.app/Contents/MacOS/title: tests/CMakeFiles/title.dir/title.c.o
+tests/title.app/Contents/MacOS/title: tests/CMakeFiles/title.dir/__/deps/glad.c.o
+tests/title.app/Contents/MacOS/title: tests/CMakeFiles/title.dir/build.make
+tests/title.app/Contents/MacOS/title: src/libglfw3.a
+tests/title.app/Contents/MacOS/title: tests/CMakeFiles/title.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/julyzamora/Desktop/Game/game/libs/glfw/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable title.app/Contents/MacOS/title"
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/tests && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/title.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-libs/glfw/tests/CMakeFiles/title.dir/build: libs/glfw/tests/title.app/Contents/MacOS/title
+tests/CMakeFiles/title.dir/build: tests/title.app/Contents/MacOS/title
 
-.PHONY : libs/glfw/tests/CMakeFiles/title.dir/build
+.PHONY : tests/CMakeFiles/title.dir/build
 
-libs/glfw/tests/CMakeFiles/title.dir/clean:
+tests/CMakeFiles/title.dir/clean:
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/tests && $(CMAKE_COMMAND) -P CMakeFiles/title.dir/cmake_clean.cmake
-.PHONY : libs/glfw/tests/CMakeFiles/title.dir/clean
+.PHONY : tests/CMakeFiles/title.dir/clean
 
-libs/glfw/tests/CMakeFiles/title.dir/depend:
-	cd /Users/julyzamora/Desktop/Game/game && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/julyzamora/Desktop/Game/game /Users/julyzamora/Desktop/Game/game/libs/glfw/tests /Users/julyzamora/Desktop/Game/game /Users/julyzamora/Desktop/Game/game/libs/glfw/tests /Users/julyzamora/Desktop/Game/game/libs/glfw/tests/CMakeFiles/title.dir/DependInfo.cmake --color=$(COLOR)
-.PHONY : libs/glfw/tests/CMakeFiles/title.dir/depend
+tests/CMakeFiles/title.dir/depend:
+	cd /Users/julyzamora/Desktop/Game/game/libs/glfw && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/julyzamora/Desktop/Game/game/libs/glfw /Users/julyzamora/Desktop/Game/game/libs/glfw/tests /Users/julyzamora/Desktop/Game/game/libs/glfw /Users/julyzamora/Desktop/Game/game/libs/glfw/tests /Users/julyzamora/Desktop/Game/game/libs/glfw/tests/CMakeFiles/title.dir/DependInfo.cmake --color=$(COLOR)
+.PHONY : tests/CMakeFiles/title.dir/depend
 

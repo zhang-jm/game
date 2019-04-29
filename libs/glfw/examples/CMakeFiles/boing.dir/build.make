@@ -43,47 +43,47 @@ RM = /usr/local/Cellar/cmake/3.13.4/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/julyzamora/Desktop/Game/game
+CMAKE_SOURCE_DIR = /Users/julyzamora/Desktop/Game/game/libs/glfw
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/julyzamora/Desktop/Game/game
+CMAKE_BINARY_DIR = /Users/julyzamora/Desktop/Game/game/libs/glfw
 
 # Include any dependencies generated for this target.
-include libs/glfw/examples/CMakeFiles/boing.dir/depend.make
+include examples/CMakeFiles/boing.dir/depend.make
 
 # Include the progress variables for this target.
-include libs/glfw/examples/CMakeFiles/boing.dir/progress.make
+include examples/CMakeFiles/boing.dir/progress.make
 
 # Include the compile flags for this target's objects.
-include libs/glfw/examples/CMakeFiles/boing.dir/flags.make
+include examples/CMakeFiles/boing.dir/flags.make
 
-libs/glfw/examples/boing.app/Contents/Resources/glfw.icns: libs/glfw/examples/glfw.icns
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Copying OS X content libs/glfw/examples/boing.app/Contents/Resources/glfw.icns"
-	$(CMAKE_COMMAND) -E copy /Users/julyzamora/Desktop/Game/game/libs/glfw/examples/glfw.icns libs/glfw/examples/boing.app/Contents/Resources/glfw.icns
+examples/boing.app/Contents/Resources/glfw.icns: examples/glfw.icns
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Copying OS X content examples/boing.app/Contents/Resources/glfw.icns"
+	$(CMAKE_COMMAND) -E copy /Users/julyzamora/Desktop/Game/game/libs/glfw/examples/glfw.icns examples/boing.app/Contents/Resources/glfw.icns
 
-libs/glfw/examples/CMakeFiles/boing.dir/boing.c.o: libs/glfw/examples/CMakeFiles/boing.dir/flags.make
-libs/glfw/examples/CMakeFiles/boing.dir/boing.c.o: libs/glfw/examples/boing.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/julyzamora/Desktop/Game/game/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object libs/glfw/examples/CMakeFiles/boing.dir/boing.c.o"
+examples/CMakeFiles/boing.dir/boing.c.o: examples/CMakeFiles/boing.dir/flags.make
+examples/CMakeFiles/boing.dir/boing.c.o: examples/boing.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/julyzamora/Desktop/Game/game/libs/glfw/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object examples/CMakeFiles/boing.dir/boing.c.o"
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/examples && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/boing.dir/boing.c.o   -c /Users/julyzamora/Desktop/Game/game/libs/glfw/examples/boing.c
 
-libs/glfw/examples/CMakeFiles/boing.dir/boing.c.i: cmake_force
+examples/CMakeFiles/boing.dir/boing.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/boing.dir/boing.c.i"
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/examples && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/julyzamora/Desktop/Game/game/libs/glfw/examples/boing.c > CMakeFiles/boing.dir/boing.c.i
 
-libs/glfw/examples/CMakeFiles/boing.dir/boing.c.s: cmake_force
+examples/CMakeFiles/boing.dir/boing.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/boing.dir/boing.c.s"
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/examples && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/julyzamora/Desktop/Game/game/libs/glfw/examples/boing.c -o CMakeFiles/boing.dir/boing.c.s
 
-libs/glfw/examples/CMakeFiles/boing.dir/__/deps/glad.c.o: libs/glfw/examples/CMakeFiles/boing.dir/flags.make
-libs/glfw/examples/CMakeFiles/boing.dir/__/deps/glad.c.o: libs/glfw/deps/glad.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/julyzamora/Desktop/Game/game/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object libs/glfw/examples/CMakeFiles/boing.dir/__/deps/glad.c.o"
+examples/CMakeFiles/boing.dir/__/deps/glad.c.o: examples/CMakeFiles/boing.dir/flags.make
+examples/CMakeFiles/boing.dir/__/deps/glad.c.o: deps/glad.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/julyzamora/Desktop/Game/game/libs/glfw/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object examples/CMakeFiles/boing.dir/__/deps/glad.c.o"
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/examples && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/boing.dir/__/deps/glad.c.o   -c /Users/julyzamora/Desktop/Game/game/libs/glfw/deps/glad.c
 
-libs/glfw/examples/CMakeFiles/boing.dir/__/deps/glad.c.i: cmake_force
+examples/CMakeFiles/boing.dir/__/deps/glad.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/boing.dir/__/deps/glad.c.i"
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/examples && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/julyzamora/Desktop/Game/game/libs/glfw/deps/glad.c > CMakeFiles/boing.dir/__/deps/glad.c.i
 
-libs/glfw/examples/CMakeFiles/boing.dir/__/deps/glad.c.s: cmake_force
+examples/CMakeFiles/boing.dir/__/deps/glad.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/boing.dir/__/deps/glad.c.s"
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/examples && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/julyzamora/Desktop/Game/game/libs/glfw/deps/glad.c -o CMakeFiles/boing.dir/__/deps/glad.c.s
 
@@ -95,25 +95,25 @@ boing_OBJECTS = \
 # External object files for target boing
 boing_EXTERNAL_OBJECTS =
 
-libs/glfw/examples/boing.app/Contents/MacOS/boing: libs/glfw/examples/CMakeFiles/boing.dir/boing.c.o
-libs/glfw/examples/boing.app/Contents/MacOS/boing: libs/glfw/examples/CMakeFiles/boing.dir/__/deps/glad.c.o
-libs/glfw/examples/boing.app/Contents/MacOS/boing: libs/glfw/examples/CMakeFiles/boing.dir/build.make
-libs/glfw/examples/boing.app/Contents/MacOS/boing: libs/glfw/src/libglfw3.a
-libs/glfw/examples/boing.app/Contents/MacOS/boing: libs/glfw/examples/CMakeFiles/boing.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/julyzamora/Desktop/Game/game/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable boing.app/Contents/MacOS/boing"
+examples/boing.app/Contents/MacOS/boing: examples/CMakeFiles/boing.dir/boing.c.o
+examples/boing.app/Contents/MacOS/boing: examples/CMakeFiles/boing.dir/__/deps/glad.c.o
+examples/boing.app/Contents/MacOS/boing: examples/CMakeFiles/boing.dir/build.make
+examples/boing.app/Contents/MacOS/boing: src/libglfw3.a
+examples/boing.app/Contents/MacOS/boing: examples/CMakeFiles/boing.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/julyzamora/Desktop/Game/game/libs/glfw/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable boing.app/Contents/MacOS/boing"
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/examples && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/boing.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-libs/glfw/examples/CMakeFiles/boing.dir/build: libs/glfw/examples/boing.app/Contents/MacOS/boing
-libs/glfw/examples/CMakeFiles/boing.dir/build: libs/glfw/examples/boing.app/Contents/Resources/glfw.icns
+examples/CMakeFiles/boing.dir/build: examples/boing.app/Contents/MacOS/boing
+examples/CMakeFiles/boing.dir/build: examples/boing.app/Contents/Resources/glfw.icns
 
-.PHONY : libs/glfw/examples/CMakeFiles/boing.dir/build
+.PHONY : examples/CMakeFiles/boing.dir/build
 
-libs/glfw/examples/CMakeFiles/boing.dir/clean:
+examples/CMakeFiles/boing.dir/clean:
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/examples && $(CMAKE_COMMAND) -P CMakeFiles/boing.dir/cmake_clean.cmake
-.PHONY : libs/glfw/examples/CMakeFiles/boing.dir/clean
+.PHONY : examples/CMakeFiles/boing.dir/clean
 
-libs/glfw/examples/CMakeFiles/boing.dir/depend:
-	cd /Users/julyzamora/Desktop/Game/game && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/julyzamora/Desktop/Game/game /Users/julyzamora/Desktop/Game/game/libs/glfw/examples /Users/julyzamora/Desktop/Game/game /Users/julyzamora/Desktop/Game/game/libs/glfw/examples /Users/julyzamora/Desktop/Game/game/libs/glfw/examples/CMakeFiles/boing.dir/DependInfo.cmake --color=$(COLOR)
-.PHONY : libs/glfw/examples/CMakeFiles/boing.dir/depend
+examples/CMakeFiles/boing.dir/depend:
+	cd /Users/julyzamora/Desktop/Game/game/libs/glfw && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/julyzamora/Desktop/Game/game/libs/glfw /Users/julyzamora/Desktop/Game/game/libs/glfw/examples /Users/julyzamora/Desktop/Game/game/libs/glfw /Users/julyzamora/Desktop/Game/game/libs/glfw/examples /Users/julyzamora/Desktop/Game/game/libs/glfw/examples/CMakeFiles/boing.dir/DependInfo.cmake --color=$(COLOR)
+.PHONY : examples/CMakeFiles/boing.dir/depend
 

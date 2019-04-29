@@ -25,6 +25,11 @@ bld/
 [Ll]og/
 CMakeFiles/
 src/CMakeFiles/
+Game-Client-Network
+Game-Server
+Game-Client
+.DS_Store
+
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/

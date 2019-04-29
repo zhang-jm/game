@@ -43,47 +43,47 @@ RM = /usr/local/Cellar/cmake/3.13.4/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/julyzamora/Desktop/Game/game
+CMAKE_SOURCE_DIR = /Users/julyzamora/Desktop/Game/game/libs/glfw
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/julyzamora/Desktop/Game/game
+CMAKE_BINARY_DIR = /Users/julyzamora/Desktop/Game/game/libs/glfw
 
 # Include any dependencies generated for this target.
-include libs/glfw/examples/CMakeFiles/wave.dir/depend.make
+include examples/CMakeFiles/wave.dir/depend.make
 
 # Include the progress variables for this target.
-include libs/glfw/examples/CMakeFiles/wave.dir/progress.make
+include examples/CMakeFiles/wave.dir/progress.make
 
 # Include the compile flags for this target's objects.
-include libs/glfw/examples/CMakeFiles/wave.dir/flags.make
+include examples/CMakeFiles/wave.dir/flags.make
 
-libs/glfw/examples/wave.app/Contents/Resources/glfw.icns: libs/glfw/examples/glfw.icns
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Copying OS X content libs/glfw/examples/wave.app/Contents/Resources/glfw.icns"
-	$(CMAKE_COMMAND) -E copy /Users/julyzamora/Desktop/Game/game/libs/glfw/examples/glfw.icns libs/glfw/examples/wave.app/Contents/Resources/glfw.icns
+examples/wave.app/Contents/Resources/glfw.icns: examples/glfw.icns
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Copying OS X content examples/wave.app/Contents/Resources/glfw.icns"
+	$(CMAKE_COMMAND) -E copy /Users/julyzamora/Desktop/Game/game/libs/glfw/examples/glfw.icns examples/wave.app/Contents/Resources/glfw.icns
 
-libs/glfw/examples/CMakeFiles/wave.dir/wave.c.o: libs/glfw/examples/CMakeFiles/wave.dir/flags.make
-libs/glfw/examples/CMakeFiles/wave.dir/wave.c.o: libs/glfw/examples/wave.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/julyzamora/Desktop/Game/game/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object libs/glfw/examples/CMakeFiles/wave.dir/wave.c.o"
+examples/CMakeFiles/wave.dir/wave.c.o: examples/CMakeFiles/wave.dir/flags.make
+examples/CMakeFiles/wave.dir/wave.c.o: examples/wave.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/julyzamora/Desktop/Game/game/libs/glfw/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object examples/CMakeFiles/wave.dir/wave.c.o"
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/examples && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/wave.dir/wave.c.o   -c /Users/julyzamora/Desktop/Game/game/libs/glfw/examples/wave.c
 
-libs/glfw/examples/CMakeFiles/wave.dir/wave.c.i: cmake_force
+examples/CMakeFiles/wave.dir/wave.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/wave.dir/wave.c.i"
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/examples && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/julyzamora/Desktop/Game/game/libs/glfw/examples/wave.c > CMakeFiles/wave.dir/wave.c.i
 
-libs/glfw/examples/CMakeFiles/wave.dir/wave.c.s: cmake_force
+examples/CMakeFiles/wave.dir/wave.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/wave.dir/wave.c.s"
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/examples && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/julyzamora/Desktop/Game/game/libs/glfw/examples/wave.c -o CMakeFiles/wave.dir/wave.c.s
 
-libs/glfw/examples/CMakeFiles/wave.dir/__/deps/glad.c.o: libs/glfw/examples/CMakeFiles/wave.dir/flags.make
-libs/glfw/examples/CMakeFiles/wave.dir/__/deps/glad.c.o: libs/glfw/deps/glad.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/julyzamora/Desktop/Game/game/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object libs/glfw/examples/CMakeFiles/wave.dir/__/deps/glad.c.o"
+examples/CMakeFiles/wave.dir/__/deps/glad.c.o: examples/CMakeFiles/wave.dir/flags.make
+examples/CMakeFiles/wave.dir/__/deps/glad.c.o: deps/glad.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/julyzamora/Desktop/Game/game/libs/glfw/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object examples/CMakeFiles/wave.dir/__/deps/glad.c.o"
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/examples && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/wave.dir/__/deps/glad.c.o   -c /Users/julyzamora/Desktop/Game/game/libs/glfw/deps/glad.c
 
-libs/glfw/examples/CMakeFiles/wave.dir/__/deps/glad.c.i: cmake_force
+examples/CMakeFiles/wave.dir/__/deps/glad.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/wave.dir/__/deps/glad.c.i"
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/examples && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/julyzamora/Desktop/Game/game/libs/glfw/deps/glad.c > CMakeFiles/wave.dir/__/deps/glad.c.i
 
-libs/glfw/examples/CMakeFiles/wave.dir/__/deps/glad.c.s: cmake_force
+examples/CMakeFiles/wave.dir/__/deps/glad.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/wave.dir/__/deps/glad.c.s"
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/examples && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/julyzamora/Desktop/Game/game/libs/glfw/deps/glad.c -o CMakeFiles/wave.dir/__/deps/glad.c.s
 
@@ -95,25 +95,25 @@ wave_OBJECTS = \
 # External object files for target wave
 wave_EXTERNAL_OBJECTS =
 
-libs/glfw/examples/wave.app/Contents/MacOS/wave: libs/glfw/examples/CMakeFiles/wave.dir/wave.c.o
-libs/glfw/examples/wave.app/Contents/MacOS/wave: libs/glfw/examples/CMakeFiles/wave.dir/__/deps/glad.c.o
-libs/glfw/examples/wave.app/Contents/MacOS/wave: libs/glfw/examples/CMakeFiles/wave.dir/build.make
-libs/glfw/examples/wave.app/Contents/MacOS/wave: libs/glfw/src/libglfw3.a
-libs/glfw/examples/wave.app/Contents/MacOS/wave: libs/glfw/examples/CMakeFiles/wave.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/julyzamora/Desktop/Game/game/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable wave.app/Contents/MacOS/wave"
+examples/wave.app/Contents/MacOS/wave: examples/CMakeFiles/wave.dir/wave.c.o
+examples/wave.app/Contents/MacOS/wave: examples/CMakeFiles/wave.dir/__/deps/glad.c.o
+examples/wave.app/Contents/MacOS/wave: examples/CMakeFiles/wave.dir/build.make
+examples/wave.app/Contents/MacOS/wave: src/libglfw3.a
+examples/wave.app/Contents/MacOS/wave: examples/CMakeFiles/wave.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/julyzamora/Desktop/Game/game/libs/glfw/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable wave.app/Contents/MacOS/wave"
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/examples && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/wave.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-libs/glfw/examples/CMakeFiles/wave.dir/build: libs/glfw/examples/wave.app/Contents/MacOS/wave
-libs/glfw/examples/CMakeFiles/wave.dir/build: libs/glfw/examples/wave.app/Contents/Resources/glfw.icns
+examples/CMakeFiles/wave.dir/build: examples/wave.app/Contents/MacOS/wave
+examples/CMakeFiles/wave.dir/build: examples/wave.app/Contents/Resources/glfw.icns
 
-.PHONY : libs/glfw/examples/CMakeFiles/wave.dir/build
+.PHONY : examples/CMakeFiles/wave.dir/build
 
-libs/glfw/examples/CMakeFiles/wave.dir/clean:
+examples/CMakeFiles/wave.dir/clean:
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/examples && $(CMAKE_COMMAND) -P CMakeFiles/wave.dir/cmake_clean.cmake
-.PHONY : libs/glfw/examples/CMakeFiles/wave.dir/clean
+.PHONY : examples/CMakeFiles/wave.dir/clean
 
-libs/glfw/examples/CMakeFiles/wave.dir/depend:
-	cd /Users/julyzamora/Desktop/Game/game && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/julyzamora/Desktop/Game/game /Users/julyzamora/Desktop/Game/game/libs/glfw/examples /Users/julyzamora/Desktop/Game/game /Users/julyzamora/Desktop/Game/game/libs/glfw/examples /Users/julyzamora/Desktop/Game/game/libs/glfw/examples/CMakeFiles/wave.dir/DependInfo.cmake --color=$(COLOR)
-.PHONY : libs/glfw/examples/CMakeFiles/wave.dir/depend
+examples/CMakeFiles/wave.dir/depend:
+	cd /Users/julyzamora/Desktop/Game/game/libs/glfw && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/julyzamora/Desktop/Game/game/libs/glfw /Users/julyzamora/Desktop/Game/game/libs/glfw/examples /Users/julyzamora/Desktop/Game/game/libs/glfw /Users/julyzamora/Desktop/Game/game/libs/glfw/examples /Users/julyzamora/Desktop/Game/game/libs/glfw/examples/CMakeFiles/wave.dir/DependInfo.cmake --color=$(COLOR)
+.PHONY : examples/CMakeFiles/wave.dir/depend
 

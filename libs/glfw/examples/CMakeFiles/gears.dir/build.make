@@ -43,47 +43,47 @@ RM = /usr/local/Cellar/cmake/3.13.4/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/julyzamora/Desktop/Game/game
+CMAKE_SOURCE_DIR = /Users/julyzamora/Desktop/Game/game/libs/glfw
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/julyzamora/Desktop/Game/game
+CMAKE_BINARY_DIR = /Users/julyzamora/Desktop/Game/game/libs/glfw
 
 # Include any dependencies generated for this target.
-include libs/glfw/examples/CMakeFiles/gears.dir/depend.make
+include examples/CMakeFiles/gears.dir/depend.make
 
 # Include the progress variables for this target.
-include libs/glfw/examples/CMakeFiles/gears.dir/progress.make
+include examples/CMakeFiles/gears.dir/progress.make
 
 # Include the compile flags for this target's objects.
-include libs/glfw/examples/CMakeFiles/gears.dir/flags.make
+include examples/CMakeFiles/gears.dir/flags.make
 
-libs/glfw/examples/gears.app/Contents/Resources/glfw.icns: libs/glfw/examples/glfw.icns
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Copying OS X content libs/glfw/examples/gears.app/Contents/Resources/glfw.icns"
-	$(CMAKE_COMMAND) -E copy /Users/julyzamora/Desktop/Game/game/libs/glfw/examples/glfw.icns libs/glfw/examples/gears.app/Contents/Resources/glfw.icns
+examples/gears.app/Contents/Resources/glfw.icns: examples/glfw.icns
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Copying OS X content examples/gears.app/Contents/Resources/glfw.icns"
+	$(CMAKE_COMMAND) -E copy /Users/julyzamora/Desktop/Game/game/libs/glfw/examples/glfw.icns examples/gears.app/Contents/Resources/glfw.icns
 
-libs/glfw/examples/CMakeFiles/gears.dir/gears.c.o: libs/glfw/examples/CMakeFiles/gears.dir/flags.make
-libs/glfw/examples/CMakeFiles/gears.dir/gears.c.o: libs/glfw/examples/gears.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/julyzamora/Desktop/Game/game/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object libs/glfw/examples/CMakeFiles/gears.dir/gears.c.o"
+examples/CMakeFiles/gears.dir/gears.c.o: examples/CMakeFiles/gears.dir/flags.make
+examples/CMakeFiles/gears.dir/gears.c.o: examples/gears.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/julyzamora/Desktop/Game/game/libs/glfw/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object examples/CMakeFiles/gears.dir/gears.c.o"
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/examples && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/gears.dir/gears.c.o   -c /Users/julyzamora/Desktop/Game/game/libs/glfw/examples/gears.c
 
-libs/glfw/examples/CMakeFiles/gears.dir/gears.c.i: cmake_force
+examples/CMakeFiles/gears.dir/gears.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/gears.dir/gears.c.i"
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/examples && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/julyzamora/Desktop/Game/game/libs/glfw/examples/gears.c > CMakeFiles/gears.dir/gears.c.i
 
-libs/glfw/examples/CMakeFiles/gears.dir/gears.c.s: cmake_force
+examples/CMakeFiles/gears.dir/gears.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/gears.dir/gears.c.s"
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/examples && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/julyzamora/Desktop/Game/game/libs/glfw/examples/gears.c -o CMakeFiles/gears.dir/gears.c.s
 
-libs/glfw/examples/CMakeFiles/gears.dir/__/deps/glad.c.o: libs/glfw/examples/CMakeFiles/gears.dir/flags.make
-libs/glfw/examples/CMakeFiles/gears.dir/__/deps/glad.c.o: libs/glfw/deps/glad.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/julyzamora/Desktop/Game/game/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object libs/glfw/examples/CMakeFiles/gears.dir/__/deps/glad.c.o"
+examples/CMakeFiles/gears.dir/__/deps/glad.c.o: examples/CMakeFiles/gears.dir/flags.make
+examples/CMakeFiles/gears.dir/__/deps/glad.c.o: deps/glad.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/julyzamora/Desktop/Game/game/libs/glfw/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object examples/CMakeFiles/gears.dir/__/deps/glad.c.o"
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/examples && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/gears.dir/__/deps/glad.c.o   -c /Users/julyzamora/Desktop/Game/game/libs/glfw/deps/glad.c
 
-libs/glfw/examples/CMakeFiles/gears.dir/__/deps/glad.c.i: cmake_force
+examples/CMakeFiles/gears.dir/__/deps/glad.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/gears.dir/__/deps/glad.c.i"
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/examples && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/julyzamora/Desktop/Game/game/libs/glfw/deps/glad.c > CMakeFiles/gears.dir/__/deps/glad.c.i
 
-libs/glfw/examples/CMakeFiles/gears.dir/__/deps/glad.c.s: cmake_force
+examples/CMakeFiles/gears.dir/__/deps/glad.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/gears.dir/__/deps/glad.c.s"
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/examples && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/julyzamora/Desktop/Game/game/libs/glfw/deps/glad.c -o CMakeFiles/gears.dir/__/deps/glad.c.s
 
@@ -95,25 +95,25 @@ gears_OBJECTS = \
 # External object files for target gears
 gears_EXTERNAL_OBJECTS =
 
-libs/glfw/examples/gears.app/Contents/MacOS/gears: libs/glfw/examples/CMakeFiles/gears.dir/gears.c.o
-libs/glfw/examples/gears.app/Contents/MacOS/gears: libs/glfw/examples/CMakeFiles/gears.dir/__/deps/glad.c.o
-libs/glfw/examples/gears.app/Contents/MacOS/gears: libs/glfw/examples/CMakeFiles/gears.dir/build.make
-libs/glfw/examples/gears.app/Contents/MacOS/gears: libs/glfw/src/libglfw3.a
-libs/glfw/examples/gears.app/Contents/MacOS/gears: libs/glfw/examples/CMakeFiles/gears.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/julyzamora/Desktop/Game/game/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable gears.app/Contents/MacOS/gears"
+examples/gears.app/Contents/MacOS/gears: examples/CMakeFiles/gears.dir/gears.c.o
+examples/gears.app/Contents/MacOS/gears: examples/CMakeFiles/gears.dir/__/deps/glad.c.o
+examples/gears.app/Contents/MacOS/gears: examples/CMakeFiles/gears.dir/build.make
+examples/gears.app/Contents/MacOS/gears: src/libglfw3.a
+examples/gears.app/Contents/MacOS/gears: examples/CMakeFiles/gears.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/julyzamora/Desktop/Game/game/libs/glfw/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable gears.app/Contents/MacOS/gears"
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/examples && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/gears.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-libs/glfw/examples/CMakeFiles/gears.dir/build: libs/glfw/examples/gears.app/Contents/MacOS/gears
-libs/glfw/examples/CMakeFiles/gears.dir/build: libs/glfw/examples/gears.app/Contents/Resources/glfw.icns
+examples/CMakeFiles/gears.dir/build: examples/gears.app/Contents/MacOS/gears
+examples/CMakeFiles/gears.dir/build: examples/gears.app/Contents/Resources/glfw.icns
 
-.PHONY : libs/glfw/examples/CMakeFiles/gears.dir/build
+.PHONY : examples/CMakeFiles/gears.dir/build
 
-libs/glfw/examples/CMakeFiles/gears.dir/clean:
+examples/CMakeFiles/gears.dir/clean:
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/examples && $(CMAKE_COMMAND) -P CMakeFiles/gears.dir/cmake_clean.cmake
-.PHONY : libs/glfw/examples/CMakeFiles/gears.dir/clean
+.PHONY : examples/CMakeFiles/gears.dir/clean
 
-libs/glfw/examples/CMakeFiles/gears.dir/depend:
-	cd /Users/julyzamora/Desktop/Game/game && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/julyzamora/Desktop/Game/game /Users/julyzamora/Desktop/Game/game/libs/glfw/examples /Users/julyzamora/Desktop/Game/game /Users/julyzamora/Desktop/Game/game/libs/glfw/examples /Users/julyzamora/Desktop/Game/game/libs/glfw/examples/CMakeFiles/gears.dir/DependInfo.cmake --color=$(COLOR)
-.PHONY : libs/glfw/examples/CMakeFiles/gears.dir/depend
+examples/CMakeFiles/gears.dir/depend:
+	cd /Users/julyzamora/Desktop/Game/game/libs/glfw && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/julyzamora/Desktop/Game/game/libs/glfw /Users/julyzamora/Desktop/Game/game/libs/glfw/examples /Users/julyzamora/Desktop/Game/game/libs/glfw /Users/julyzamora/Desktop/Game/game/libs/glfw/examples /Users/julyzamora/Desktop/Game/game/libs/glfw/examples/CMakeFiles/gears.dir/DependInfo.cmake --color=$(COLOR)
+.PHONY : examples/CMakeFiles/gears.dir/depend
 

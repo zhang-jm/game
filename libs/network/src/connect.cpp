@@ -1,87 +1,93 @@
+/*---------------------------------
+- Prototypes
+-----------------------------------*/
+#include "connect.h"
 
-
-
-
-Connenction(uint16_t port, size_t num_players)
+Connection::Connection(const string ip_address,
+                       const uint16_t port,
+                       size_t num_connections)
   : state(DISCONNECTED),
-    ip_address(""),
+    ip_address(ip_address),
     port(port),
-    num_players(num_players),
+    num_connections(num_connections),
     master_socket(-1) {
 
 }
 
-
-
-~Conenction(){
+Connection::~Connection(){
   disconnect();
 }
 
-bool server_network_setup(const string ip_address,
-                               const uint16_t port){
+bool Connection::server_network_setup(){
   int             opt = true;
-
-  // set of socket descriptors
-  fd_set          readfds;
-
-  for(auto player_socket : this->player_sockets){
-    player_socket = 0;
-  }
+  int             i;
 
   // init master socket
   if( (this->master_socket = socket(AF_INET , SOCK_STREAM , 0)) == 0) {
     perror(" Socket init failed \n");
-    exit(EXIT_FAILURE);
+    return false;
   }
 
   // set sock options
   if( setsockopt(this->master_socket, SOL_SOCKET, SO_REUSEADDR,
                 (char *)&opt, sizeof(opt)) < 0){
-
     perror(" Socket options failed \n");
-    exit(EXIT_FAILURE);
+    return false;
   }
 
-  // specify port, ip, and type
-  this->address.sin_family = AF_INET;
-  this->address.sin_addr.s_addr = INADDR_ANY;
-  this->address.sin_port = htons( this->port );
+  // specify port, ip address, and type
+  this->addr.sin_family = AF_INET;
+  inet_pton(AF_INET, this->ip_address.c_str(), &(this->addr).sin_addr);
+  this->addr.sin_port = htons( this->port );
 
   //bind
-  if( bind(this->master_socket, (struct sockaddr *) &address, sizeof(address)) < 0){
+  if( bind(this->master_socket, (struct sockaddr *) &(this->addr), sizeof(this->addr)) < 0){
     perror("bind failed\n");
-    exit(EXIT_FAILURE);
+    return false;
   }
 
   // specify number of pending connections
-  if( listen(this->master_socket, num_players) < 0){
-    perror("listen\n");
-    exit(EXIT_FAILURE);
+  if( listen(this->master_socket, num_connections) < 0){
+    printf("error listening:    \n"
+           "master_socket     %d\n"
+           "num_connections   %d\n", this->master_socket, num_connections);
+    return false;
   }
-  return;
+
+  // finished setup, start listening on port
+  return true;
 }
 
-bool server_connect(const string ip_address,const uint16_t port){
-  int max_sd;
-  char *message = "Welcome to shitty multiplayer experience\n";
+bool Connection::server_connect(vector<int> &communication_sockets){
+  int max_sd, active_fd, accept_socket, addrlen, i;
+  Packet acceptance_packet;
+  acceptance_packet.length = 40;
+  strcpy(acceptance_packet.data, "Welcome to v bad multiplayer\n");
+
+  // Initialize socket fd for num connections
+  for(i = 0; i < this->num_connections; i++){
+    communication_sockets.push_back(0);
+  }
+
+  addrlen = sizeof(this->addr);
 
   // wait for incoming connections
   while(true){
     // clear sockets
-    FD_ZERO(&readfds);
+    FD_ZERO(&(this->readfds));
 
     // add master socket to set
-    FD_SET(master_socket, &readfds);
+    FD_SET(this->master_socket, &(this->readfds));
 
     // init max fd number
-    max_sd = master_socket;
+    max_sd = this->master_socket;
 
-    for(auto player_socket : this->player_sockets){
-      if(player_socket){
-        FD_SET( player_socket, &readfds );
+    for(auto communication_socket : communication_sockets){
+      if(communication_socket){
+        FD_SET( communication_socket, &(this->readfds) );
       }
       // needed for select function
-      max_sd = max(master_socket, player_socket);
+      max_sd = max(this->master_socket, communication_socket);
     }
 
     // continuously wait for sockets to become available
@@ -93,56 +99,125 @@ bool server_connect(const string ip_address,const uint16_t port){
     }
 
     // Incoming connection
-    if(FD_ISSET(master_socket, &readfds)){
-      if((accept_socket = accept(master_socket,
-            (struct sockaddr *) &address, (socklen_t*)& addrlen)) < 0){
+    if(FD_ISSET(this->master_socket, &(this->readfds))){
+      if((accept_socket = accept(this->master_socket,
+            (struct sockaddr *) &(this->addr), (socklen_t*)& addrlen)) < 0){
               perror("error player connection\n");
               return false;
       }
-      // dump info
-      if( send(accept_socket, acceptance_msg, strlen(acceptance_msg), 0)
-          != strlen(message) ){
-            perror("send");
-            return false;
-      }
       // assign new incoming connection
-      for(auto player_socket : player_sockets){
-        if(!player_socket){
-          player_socket = accept_socket;
-          this->num_players_connected++;
+      for(auto communication_socket : communication_sockets){
+        if(!communication_socket){
+          communication_socket = accept_socket;
+          this->num_connected++;
+          puts("Connected to player!\n");
+          if(send(communication_socket, (char *) &acceptance_packet, acceptance_packet.length, 0)
+                  !=  acceptance_packet.length){
+            printf("Couldn't send acceptance message\n");
+          }
           break;
         }
       }
-      if(num_players_connected >= this->num_players){
+      if(this->num_connected >= this->num_connections){
         puts("Finished connection phase!\n");
         this->state = CONNECTED;
         break;
       }
     }
+
   }
   return true;
 }
 
-bool client_network_setup(const string ip_address){
+bool Connection::client_network_setup(int & communication_socket){
+
+  // create socket
+  if((communication_socket = socket(AF_INET, SOCK_STREAM, 0)) < 0){
+    printf("Socket creation error \n");
+    close(communication_socket);
+    return false;
+  }
+
+  // clear addr
+  memset(&(this->addr), '0', sizeof(this->addr));
+  this->addr.sin_family = AF_INET;
+  this->addr.sin_port = htons(port);
+
+  // Place ip address
+  if(inet_pton(AF_INET, this->ip_address.c_str(), &(this->addr).sin_addr) <= 0){
+    printf("Invalid address\n");
+    close(communication_socket);
+    return false;
+  }
+  return true;
+}
+
+bool Connection::client_connect(int &communication_socket){
+
+  if(connect(communication_socket,(struct sockaddr *)&(this->addr),
+                                   sizeof(this->addr)) < 0){
+    perror("Connection failed:\n");
+    close(communication_socket);
+    return false;
+  }
+  printf("Connected to server\n");
+  this->state=CONNECTED;
+  return true;
+}
+
+bool Connection::reconnect(){
   return false;
 }
 
-bool client_connect(const string ip_address, const uint16_t port){
+bool Connection::disconnect(){
   return false;
 }
 
-bool reconnect(){
-  return false;
+// send a packet
+bool Connection::send_packet(int socket, const Packet& packet){
+  uint32_t num_bytes;
+
+  num_bytes = (uint32_t) send(socket, (char *) &packet.data, packet.length, 0);
+  if(num_bytes < packet.length){
+    perror("bad send to client\n");
+    return false;
+  }
+  return num_bytes == packet.length;
 }
 
-bool disconnect(){
-  return false;
-}
+// receive packet
+bool Connection::receive_packet(int socket, const Packet& packet){
 
-bool send_packet(const Send_Packet& packet){
-  return false;
-}
+  uint32_t num_bytes;
+  uint32_t bytes_remaining;
+  char recv_size[PACKET_SIZE];
+  char buffer[PACKET_SIZE];
 
-bool receive_packet(const Receive_Packet& packet){
-  return false;
+  // get msg size
+  num_bytes = (uint32_t) recv(socket, recv_size, sizeof(packet.length), 0);
+
+  memcpy((void *) &packet.length, (void *) recv_size, sizeof(packet.length));
+
+  if(num_bytes == 0){
+    perror("receive length error\n");
+    return false;
+  }
+  else if(num_bytes != sizeof(packet.length)){
+    this->state = DISCONNECTED;
+    return false;
+  }
+  else{
+    bytes_remaining = packet.length - num_bytes;
+    num_bytes = 0;
+
+    // Make sure we receive all bytes
+    while(num_bytes != packet.length){
+      num_bytes = (uint32_t) recv(socket, &buffer[sizeof(packet.length)],
+                                  bytes_remaining, 0);
+    }
+  }
+
+  // copy the data to our buffer
+  memcpy((void *) packet.data, (void *) buffer, packet.length);
+  return true;
 }

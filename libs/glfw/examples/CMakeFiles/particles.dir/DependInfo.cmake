@@ -9,12 +9,12 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/julyzamora/Desktop/Game/game/libs/glfw/deps/tinycthread.c" "/Users/julyzamora/Desktop/Game/game/libs/glfw/examples/CMakeFiles/particles.dir/__/deps/tinycthread.c.o"
   "/Users/julyzamora/Desktop/Game/game/libs/glfw/examples/particles.c" "/Users/julyzamora/Desktop/Game/game/libs/glfw/examples/CMakeFiles/particles.dir/particles.c.o"
   )
-set(CMAKE_C_COMPILER_ID "AppleClang")
+set(CMAKE_C_COMPILER_ID "Clang")
 
 # The include file search paths:
 set(CMAKE_C_TARGET_INCLUDE_PATH
-  "libs/glfw/deps"
-  "libs/glfw/include"
+  "deps"
+  "include"
   )
 
 # Targets to which this target links.

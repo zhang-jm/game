@@ -28,7 +28,7 @@ stdlib.h
 stdio.h
 -
 
-libs/glfw/deps/KHR/khrplatform.h
+deps/KHR/khrplatform.h
 stdint.h
 -
 inttypes.h
@@ -36,7 +36,7 @@ inttypes.h
 stdint.h
 -
 
-libs/glfw/deps/glad/glad.h
+deps/glad/glad.h
 windows.h
 -
 stddef.h
@@ -56,11 +56,11 @@ stdint.h
 inttypes.h
 -
 
-libs/glfw/deps/linmath.h
+deps/linmath.h
 math.h
 -
 
-libs/glfw/deps/vulkan/vk_platform.h
+deps/vulkan/vk_platform.h
 stddef.h
 -
 stdint.h
@@ -78,9 +78,9 @@ X11/Xlib.h
 xcb/xcb.h
 -
 
-libs/glfw/deps/vulkan/vulkan.h
+deps/vulkan/vulkan.h
 vk_platform.h
-libs/glfw/deps/vulkan/vk_platform.h
+deps/vulkan/vk_platform.h
 X11/Xlib.h
 -
 xcb/xcb.h
@@ -94,7 +94,7 @@ android/native_window.h
 windows.h
 -
 
-libs/glfw/include/GLFW/glfw3.h
+include/GLFW/glfw3.h
 stddef.h
 -
 stdint.h

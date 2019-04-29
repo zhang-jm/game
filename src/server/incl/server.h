@@ -8,6 +8,7 @@
 #include<stdlib.h> //size_t
 #include<stdio.h>
 #include<errno.h>
+#include <string.h> //strcpy
 
 /*---------------------------------
 - Prototypes
@@ -18,7 +19,7 @@ class Server {
   public:
 
     // Constructor
-    Server(uint16_t port, size_t max_clients);
+    Server(const string ip_address, const uint16_t port, size_t num_connections);
 
     // Initialize game
     void init();
@@ -27,16 +28,20 @@ class Server {
     void init_maze();
 
     // Begin player connections phase
-    void start(int num_players);
+    bool establish_network(vector<int> &communication_sockets);
 
-    // End of player connection phase
-    void close();
+    // Gracefully end connections
+    void teardown_network();
 
-    // stepping function
+    // step function
     void step(const float dt);
 
-    // server loop
-    static void run_server(const uint16_t port, const size_t num_players);
+    // server core loop
+    static void run_server(string ip_address, const uint16_t port,
+                                              const size_t num_connections);
+
+    // process msg from player
+    void process_msg();
 
     /*-------------------------------
     - Debugging functions
@@ -56,8 +61,10 @@ class Server {
 
 
   private:
-    bool                      game_started;
-    Connection                multiplayer_connection;
+    Communication_Buffer      data;
+    Connection                server_connection;
+    vector<int>               communication_sockets;
+
 
 };
 

@@ -43,56 +43,56 @@ RM = /usr/local/Cellar/cmake/3.13.4/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/julyzamora/Desktop/Game/game
+CMAKE_SOURCE_DIR = /Users/julyzamora/Desktop/Game/game/libs/glfw
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/julyzamora/Desktop/Game/game
+CMAKE_BINARY_DIR = /Users/julyzamora/Desktop/Game/game/libs/glfw
 
 # Include any dependencies generated for this target.
-include libs/glfw/tests/CMakeFiles/gamma.dir/depend.make
+include tests/CMakeFiles/gamma.dir/depend.make
 
 # Include the progress variables for this target.
-include libs/glfw/tests/CMakeFiles/gamma.dir/progress.make
+include tests/CMakeFiles/gamma.dir/progress.make
 
 # Include the compile flags for this target's objects.
-include libs/glfw/tests/CMakeFiles/gamma.dir/flags.make
+include tests/CMakeFiles/gamma.dir/flags.make
 
-libs/glfw/tests/CMakeFiles/gamma.dir/gamma.c.o: libs/glfw/tests/CMakeFiles/gamma.dir/flags.make
-libs/glfw/tests/CMakeFiles/gamma.dir/gamma.c.o: libs/glfw/tests/gamma.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/julyzamora/Desktop/Game/game/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object libs/glfw/tests/CMakeFiles/gamma.dir/gamma.c.o"
+tests/CMakeFiles/gamma.dir/gamma.c.o: tests/CMakeFiles/gamma.dir/flags.make
+tests/CMakeFiles/gamma.dir/gamma.c.o: tests/gamma.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/julyzamora/Desktop/Game/game/libs/glfw/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object tests/CMakeFiles/gamma.dir/gamma.c.o"
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/tests && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/gamma.dir/gamma.c.o   -c /Users/julyzamora/Desktop/Game/game/libs/glfw/tests/gamma.c
 
-libs/glfw/tests/CMakeFiles/gamma.dir/gamma.c.i: cmake_force
+tests/CMakeFiles/gamma.dir/gamma.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/gamma.dir/gamma.c.i"
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/tests && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/julyzamora/Desktop/Game/game/libs/glfw/tests/gamma.c > CMakeFiles/gamma.dir/gamma.c.i
 
-libs/glfw/tests/CMakeFiles/gamma.dir/gamma.c.s: cmake_force
+tests/CMakeFiles/gamma.dir/gamma.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/gamma.dir/gamma.c.s"
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/tests && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/julyzamora/Desktop/Game/game/libs/glfw/tests/gamma.c -o CMakeFiles/gamma.dir/gamma.c.s
 
-libs/glfw/tests/CMakeFiles/gamma.dir/__/deps/getopt.c.o: libs/glfw/tests/CMakeFiles/gamma.dir/flags.make
-libs/glfw/tests/CMakeFiles/gamma.dir/__/deps/getopt.c.o: libs/glfw/deps/getopt.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/julyzamora/Desktop/Game/game/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object libs/glfw/tests/CMakeFiles/gamma.dir/__/deps/getopt.c.o"
+tests/CMakeFiles/gamma.dir/__/deps/getopt.c.o: tests/CMakeFiles/gamma.dir/flags.make
+tests/CMakeFiles/gamma.dir/__/deps/getopt.c.o: deps/getopt.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/julyzamora/Desktop/Game/game/libs/glfw/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object tests/CMakeFiles/gamma.dir/__/deps/getopt.c.o"
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/tests && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/gamma.dir/__/deps/getopt.c.o   -c /Users/julyzamora/Desktop/Game/game/libs/glfw/deps/getopt.c
 
-libs/glfw/tests/CMakeFiles/gamma.dir/__/deps/getopt.c.i: cmake_force
+tests/CMakeFiles/gamma.dir/__/deps/getopt.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/gamma.dir/__/deps/getopt.c.i"
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/tests && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/julyzamora/Desktop/Game/game/libs/glfw/deps/getopt.c > CMakeFiles/gamma.dir/__/deps/getopt.c.i
 
-libs/glfw/tests/CMakeFiles/gamma.dir/__/deps/getopt.c.s: cmake_force
+tests/CMakeFiles/gamma.dir/__/deps/getopt.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/gamma.dir/__/deps/getopt.c.s"
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/tests && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/julyzamora/Desktop/Game/game/libs/glfw/deps/getopt.c -o CMakeFiles/gamma.dir/__/deps/getopt.c.s
 
-libs/glfw/tests/CMakeFiles/gamma.dir/__/deps/glad.c.o: libs/glfw/tests/CMakeFiles/gamma.dir/flags.make
-libs/glfw/tests/CMakeFiles/gamma.dir/__/deps/glad.c.o: libs/glfw/deps/glad.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/julyzamora/Desktop/Game/game/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object libs/glfw/tests/CMakeFiles/gamma.dir/__/deps/glad.c.o"
+tests/CMakeFiles/gamma.dir/__/deps/glad.c.o: tests/CMakeFiles/gamma.dir/flags.make
+tests/CMakeFiles/gamma.dir/__/deps/glad.c.o: deps/glad.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/julyzamora/Desktop/Game/game/libs/glfw/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object tests/CMakeFiles/gamma.dir/__/deps/glad.c.o"
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/tests && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/gamma.dir/__/deps/glad.c.o   -c /Users/julyzamora/Desktop/Game/game/libs/glfw/deps/glad.c
 
-libs/glfw/tests/CMakeFiles/gamma.dir/__/deps/glad.c.i: cmake_force
+tests/CMakeFiles/gamma.dir/__/deps/glad.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/gamma.dir/__/deps/glad.c.i"
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/tests && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/julyzamora/Desktop/Game/game/libs/glfw/deps/glad.c > CMakeFiles/gamma.dir/__/deps/glad.c.i
 
-libs/glfw/tests/CMakeFiles/gamma.dir/__/deps/glad.c.s: cmake_force
+tests/CMakeFiles/gamma.dir/__/deps/glad.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/gamma.dir/__/deps/glad.c.s"
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/tests && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/julyzamora/Desktop/Game/game/libs/glfw/deps/glad.c -o CMakeFiles/gamma.dir/__/deps/glad.c.s
 
@@ -105,25 +105,25 @@ gamma_OBJECTS = \
 # External object files for target gamma
 gamma_EXTERNAL_OBJECTS =
 
-libs/glfw/tests/gamma: libs/glfw/tests/CMakeFiles/gamma.dir/gamma.c.o
-libs/glfw/tests/gamma: libs/glfw/tests/CMakeFiles/gamma.dir/__/deps/getopt.c.o
-libs/glfw/tests/gamma: libs/glfw/tests/CMakeFiles/gamma.dir/__/deps/glad.c.o
-libs/glfw/tests/gamma: libs/glfw/tests/CMakeFiles/gamma.dir/build.make
-libs/glfw/tests/gamma: libs/glfw/src/libglfw3.a
-libs/glfw/tests/gamma: libs/glfw/tests/CMakeFiles/gamma.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/julyzamora/Desktop/Game/game/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C executable gamma"
+tests/gamma: tests/CMakeFiles/gamma.dir/gamma.c.o
+tests/gamma: tests/CMakeFiles/gamma.dir/__/deps/getopt.c.o
+tests/gamma: tests/CMakeFiles/gamma.dir/__/deps/glad.c.o
+tests/gamma: tests/CMakeFiles/gamma.dir/build.make
+tests/gamma: src/libglfw3.a
+tests/gamma: tests/CMakeFiles/gamma.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/julyzamora/Desktop/Game/game/libs/glfw/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C executable gamma"
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/tests && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/gamma.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-libs/glfw/tests/CMakeFiles/gamma.dir/build: libs/glfw/tests/gamma
+tests/CMakeFiles/gamma.dir/build: tests/gamma
 
-.PHONY : libs/glfw/tests/CMakeFiles/gamma.dir/build
+.PHONY : tests/CMakeFiles/gamma.dir/build
 
-libs/glfw/tests/CMakeFiles/gamma.dir/clean:
+tests/CMakeFiles/gamma.dir/clean:
 	cd /Users/julyzamora/Desktop/Game/game/libs/glfw/tests && $(CMAKE_COMMAND) -P CMakeFiles/gamma.dir/cmake_clean.cmake
-.PHONY : libs/glfw/tests/CMakeFiles/gamma.dir/clean
+.PHONY : tests/CMakeFiles/gamma.dir/clean
 
-libs/glfw/tests/CMakeFiles/gamma.dir/depend:
-	cd /Users/julyzamora/Desktop/Game/game && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/julyzamora/Desktop/Game/game /Users/julyzamora/Desktop/Game/game/libs/glfw/tests /Users/julyzamora/Desktop/Game/game /Users/julyzamora/Desktop/Game/game/libs/glfw/tests /Users/julyzamora/Desktop/Game/game/libs/glfw/tests/CMakeFiles/gamma.dir/DependInfo.cmake --color=$(COLOR)
-.PHONY : libs/glfw/tests/CMakeFiles/gamma.dir/depend
+tests/CMakeFiles/gamma.dir/depend:
+	cd /Users/julyzamora/Desktop/Game/game/libs/glfw && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/julyzamora/Desktop/Game/game/libs/glfw /Users/julyzamora/Desktop/Game/game/libs/glfw/tests /Users/julyzamora/Desktop/Game/game/libs/glfw /Users/julyzamora/Desktop/Game/game/libs/glfw/tests /Users/julyzamora/Desktop/Game/game/libs/glfw/tests/CMakeFiles/gamma.dir/DependInfo.cmake --color=$(COLOR)
+.PHONY : tests/CMakeFiles/gamma.dir/depend
 
