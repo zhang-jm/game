@@ -28,7 +28,8 @@ int ShaderLoader::LoadShader(const char * vertexShaderPath, const char * fragmen
     return programID;
 }
 
-int ShaderLoader::LoadShader(const char * vertexShaderPath, const char * fragmentShaderPath, const char * geometryShaderPath) {
+int ShaderLoader::LoadShader(const char * vertexShaderPath, const char * fragmentShaderPath, 
+                             const char * geometryShaderPath) {
 
     Shader s;
     s.reserve(3);
