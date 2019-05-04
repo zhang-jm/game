@@ -1,17 +1,23 @@
 # Refreshing keyword: hud
 
-set(MAIN_COMMON_HEADER_DIR "src/main_loops/incl")
-
-set(SERVER_BASE "src/network/server")
-set(SERVER_HEADER_DIR "${SERVER_BASE}/incl")
-
 cmake_minimum_required(VERSION 3.0)
 project(Game)
+
+set(MAIN_COMMON_HEADER_DIR "src/main_loops/incl")
+
+set(GRAPHICS_HEADER_DIR "src/graphics")
+set(SERVER_BASE "src/network/server")
+set(SERVER_HEADER_DIR "${SERVER_BASE}/incl")
 
 set(GLFW_BUILD_DOCS OFF)
 set(GLFW_BUILD_EXAMPLES OFF)
 set(GLFW_BUILD_TESTS OFF)
 add_subdirectory(libs/glfw)
+
+set(ASSIMP_BUILD_ASSIMP_TOOLS OFF)
+set(ASSIMP_BUILD_SAMPLES OFF)
+set(ASSIMP_BUILD_TESTS OFF)
+add_subdirectory(libs/assimp)
 
 if(MSVC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /std:c++17 /permissive- /experimental:external /external:anglebrackets /external:W0 /D NOMINMAX")
@@ -23,14 +29,14 @@ else()
 endif()
 
 include_directories(src/)
-include_directories(SYSTEM
+include_directories(libs/assimp/include/
                     libs/glad/include/
                     libs/glfw/include/
                     libs/glm/)
 
 file(GLOB VENDORS_SOURCES libs/glad/src/glad.c)
-file(GLOB_RECURSE GAME_HEADERS src/main_loops/incl/*.h)
-file(GLOB_RECURSE GAME_SOURCES src/main_loops/src/*.cpp)
+file(GLOB CLIENT_HEADERS ${GRAPHICS_HEADER_DIR}/incl/*.h)
+file(GLOB CLIENT_SOURCES ${GRAPHICS_HEADER_DIR}/src/*.cpp)
 file(GLOB SERVER_HEADERS ${SERVER_BASE}/incl/*.h)
 file(GLOB SERVER_SOURCES ${SERVER_BASE}/src/*.cpp)
 
@@ -57,9 +63,8 @@ add_definitions(-DGLFW_INCLUDE_NONE
 ########################################
 # Executables
 ########################################
-add_executable(${PROJECT_NAME}-Client ${PROJECT_SOURCES}
-                                      ${PROJECT_HEADERS}
-                                      ${PROJECT_CONFIGS}
+add_executable(${PROJECT_NAME}-Client ${CLIENT_HEADERS}
+                                      ${CLIENT_SOURCES}
                                       ${VENDORS_SOURCES} src/main_loops/src/client_loop.cpp)
 
 add_executable(${PROJECT_NAME}-Server ${SERVER_SOURCES}
@@ -68,7 +73,7 @@ add_executable(${PROJECT_NAME}-Server ${SERVER_SOURCES}
 ########################################
 # Libraries
 ########################################
-target_link_libraries(${PROJECT_NAME}-Client glfw
+target_link_libraries(${PROJECT_NAME}-Client assimp glfw
                       ${GLFW_LIBRARIES} ${GLAD_LIBRARIES})
 
 ########################################
@@ -77,7 +82,12 @@ target_link_libraries(${PROJECT_NAME}-Client glfw
 # AFTER executables section
 ########################################
 
+########################################
+# Client Includes
+########################################
 
+target_include_directories(${PROJECT_NAME}-Client PRIVATE ${GRAPHICS_HEADER_DIR})
+target_include_directories(${PROJECT_NAME}-Client PRIVATE ${MAIN_COMMON_HEADER_DIR})
 
 
 ########################################
@@ -92,18 +102,7 @@ target_include_directories(${PROJECT_NAME}-Server PRIVATE ${MAIN_COMMON_HEADER_D
 # Target Output
 ########################################
 set_target_properties(${PROJECT_NAME}-Client PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${PROJECT_NAME})
+    RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/${PROJECT_NAME})
 
 set_target_properties(${PROJECT_NAME}-Server PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${PROJECT_NAME})
-
-########################################
-# Copy executables to source dir
-########################################
-add_custom_command(TARGET ${PROJECT_NAME}-Client 
-                   POST_BUILD
-                   COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${PROJECT_NAME}-Client> ${PROJECT_SOURCE_DIR}/${PROJECT_NAME})
-
-add_custom_command(TARGET ${PROJECT_NAME}-Server 
-                   POST_BUILD
-                   COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${PROJECT_NAME}-Server> ${PROJECT_SOURCE_DIR}/${PROJECT_NAME})
+    RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/${PROJECT_NAME})
