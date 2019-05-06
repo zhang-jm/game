@@ -4,4 +4,7 @@ branches:
 
 language: cpp
 
+install:
+  - sudo apt-get install libxrandr-dev
+
 script: cmake . && make -j
