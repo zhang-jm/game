@@ -5,6 +5,6 @@ branches:
 language: cpp
 
 install:
-  - sudo apt-get install libxrandr-dev
+  - sudo apt-get install libxrandr-dev libxinerama-dev
 
 script: cmake . && make -j
