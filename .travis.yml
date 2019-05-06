@@ -3,8 +3,10 @@ branches:
   - master
 
 language: cpp
+env: CXX=g++-7
 
 install:
   - sudo apt-get install libxrandr-dev libxinerama-dev libxcursor-dev libx11-dev libxi-dev
+  - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 60 --slave /usr/bin/g++ g++ /usr/bin/g++-7
 
 script: cmake . && make -j
