@@ -6,6 +6,7 @@ project(Game)
 set(MAIN_COMMON_HEADER_DIR "src/main_loops/incl")
 
 set(GRAPHICS_HEADER_DIR "src/graphics")
+set(UTILS_DIR "src/utils/logging")
 set(SERVER_BASE "src/network/server")
 set(SERVER_HEADER_DIR "${SERVER_BASE}/incl")
 
@@ -32,11 +33,14 @@ include_directories(src/)
 include_directories(libs/assimp/include/
                     libs/glad/include/
                     libs/glfw/include/
-                    libs/glm/)
+                    libs/glm/
+                    libs/spdlog/include/)
 
 file(GLOB VENDORS_SOURCES libs/glad/src/glad.c)
-file(GLOB CLIENT_HEADERS ${GRAPHICS_HEADER_DIR}/incl/*.h)
-file(GLOB CLIENT_SOURCES ${GRAPHICS_HEADER_DIR}/src/*.cpp)
+file(GLOB CLIENT_HEADERS ${GRAPHICS_HEADER_DIR}/incl/*.h
+                         ${UTILS_DIR}/*.h)
+file(GLOB CLIENT_SOURCES ${GRAPHICS_HEADER_DIR}/src/*.cpp
+                         ${UTILS_DIR}/*.cpp)
 file(GLOB SERVER_HEADERS ${SERVER_BASE}/incl/*.h)
 file(GLOB SERVER_SOURCES ${SERVER_BASE}/src/*.cpp)
 
@@ -88,7 +92,7 @@ target_link_libraries(${PROJECT_NAME}-Client assimp glfw
 
 target_include_directories(${PROJECT_NAME}-Client PRIVATE ${GRAPHICS_HEADER_DIR})
 target_include_directories(${PROJECT_NAME}-Client PRIVATE ${MAIN_COMMON_HEADER_DIR})
-
+target_include_directories(${PROJECT_NAME}-Client PRIVATE ${UTILS_DIR})
 
 ########################################
 # Server Includes

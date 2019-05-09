@@ -1,6 +1,7 @@
 #include <graphics/incl/model.h>
 #include <graphics/incl/mesh.h>
 #include <graphics/incl/shader_loader.h>
+#include <utils/logging/logging.h>
 
 Model::Model(ShaderLoader& loader, const char* path, 
     const char* vertex_shader_path, const char* frag_shader_path) {
@@ -21,7 +22,7 @@ void Model::Render(const glm::mat4& view, const glm::mat4& projection) {
 }
 
 void Model::LoadModel(const std::string path) {
-    std::cout << "Loading model at path: " << path << std::endl;
+    LOG.info("Loading model at path: {} ", path);
 
     // read file via ASSIMP
     Assimp::Importer importer;
@@ -30,7 +31,7 @@ void Model::LoadModel(const std::string path) {
     // check for errors
     if (!scene || scene->mFlags == AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
     {
-        std::cout << "Error: Assimp could not load model -  " << importer.GetErrorString() << std::endl;
+        LOG.error("Error: Assimp could not load model - {}", importer.GetErrorString());
         return;
     }
 
@@ -62,8 +63,6 @@ Mesh Model::ProcessMesh(aiMesh* mesh, const aiScene* scene) {
     // parse vertices for mesh
     for (GLuint i = 0; i < mesh->mNumVertices; i++)
     {
-        std::cout << "parse mesh" << std::endl;
-
         Vertex vertex;
         vertex.position.x = mesh->mVertices[i].x;
         vertex.position.y = mesh->mVertices[i].y;
@@ -85,13 +84,11 @@ Mesh Model::ProcessMesh(aiMesh* mesh, const aiScene* scene) {
         if (mesh->mMaterialIndex >= 0)
         {
             aiMaterial* const material = scene->mMaterials[mesh->mMaterialIndex];
-            std::cout << "not diffuse" << std::endl;
             vertex.color = glm::vec4(1.0f);
 
             aiColor4D diffuse;
             if (AI_SUCCESS == aiGetMaterialColor(material, AI_MATKEY_COLOR_DIFFUSE, &diffuse))
             {
-                std::cout << "diffuse" << std::endl;
                 vertex.color = glm::vec4(diffuse.r, diffuse.g, diffuse.b, diffuse.a);
             }
         }

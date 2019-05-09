@@ -1,5 +1,6 @@
 #include <glad/glad.h>
 #include <graphics/incl/shader_loader.h>
+#include <utils/logging/logging.h>
 
 #include <string>
 #include <iostream>
@@ -70,7 +71,7 @@ int ShaderLoader::ParseShader(const Shader& s) {
         try
         {
             // open file
-            std::cout << shaderfile.second << std::endl;
+            LOG.info("Loading shader at path: {}", shaderfile.second);
             shaderFileCodeStream.open(shaderfile.second); 
 
             // read file contents into stream
@@ -85,7 +86,7 @@ int ShaderLoader::ParseShader(const Shader& s) {
         }
         catch (std::ifstream::failure e)
         {
-            std::cout << "Error: could not read file " << shaderfile.second << " - " << e.what() << std::endl;
+            LOG.error("Error: could not read file {} - {}", shaderfile.second, e.what());
             return -1;
         }
 
@@ -99,7 +100,7 @@ int ShaderLoader::ParseShader(const Shader& s) {
         glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
         if (!success) {
                 glGetShaderInfoLog(shader, 1024, NULL, infoLog);
-                std::cout << "Error: shader compilation error - " << infoLog << std::endl;
+                LOG.error("Error: shader compilation error - {}", infoLog);
                 return -1;
         }
 
@@ -114,7 +115,7 @@ int ShaderLoader::ParseShader(const Shader& s) {
     if (!success)
     {
         glGetProgramInfoLog(program, 1024, NULL, infoLog);
-        std::cout << "Error: program link error - " << infoLog << std::endl;
+        LOG.error("Error: program link error - {}", infoLog);
         return -1;
     }
 

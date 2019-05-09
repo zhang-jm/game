@@ -5,6 +5,7 @@
 
 #include <iostream>
 
+#include <utils/logging/logging.h>
 #include <graphics/incl/shader_loader.h>
 #include <graphics/incl/model.h>
 
@@ -47,19 +48,21 @@ auto WindowSetup() {
 
 	// Check for Valid Context
 	if (mWindow == nullptr) {
-		std::cerr << "Failed to Create OpenGL Context" << std::endl;
+        LOG.error("Failed to Create OpenGL Context");
 		return mWindow;
 	}
 
 	// Create Context and Load OpenGL Functions
 	glfwMakeContextCurrent(mWindow);
 	gladLoadGL();
-	std::cout << "OpenGL {}\n" << glGetString(GL_VERSION) << std::endl;
+    LOG.info("OpenGL {}\n", glGetString(GL_VERSION));
 
 	return mWindow;
 }
 
 int main(int argc, char * argv[]) {
+    InitLogger("ClientLogger");
+
 	auto mWindow = WindowSetup();
 
 	glfwSetKeyCallback(mWindow, key_callback);
@@ -86,7 +89,11 @@ int main(int argc, char * argv[]) {
 		// Flip Buffers and Draw
 		glfwSwapBuffers(mWindow);
 		glfwPollEvents();
-	}   glfwTerminate();
+	}   
+    
+    LOG.flush();
+
+    glfwTerminate();
 
 	return 0;
 }
