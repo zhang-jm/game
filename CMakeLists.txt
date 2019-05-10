@@ -102,6 +102,10 @@ target_include_directories(${PROJECT_NAME}-Server PRIVATE ${SERVER_HEADER_DIR})
 target_include_directories(${PROJECT_NAME}-Server PRIVATE ${MAIN_COMMON_HEADER_DIR})
 
 
+
+#protoc -I . --grpc_out=. --plugin=protoc-gen-grpc=../../libs/grpc/bins/opt/grpc_cpp_plugin actionHandler.proto
+#protoc -I . --cpp_out=. actionHandler.proto
+# above  ran in proto folder to make code
 ########################################
 # Target Output
 ########################################

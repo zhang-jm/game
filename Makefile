@@ -68,28 +68,6 @@ install/local/fast: preinstall/fast
 	/usr/local/Cellar/cmake/3.13.4/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/local/Cellar/cmake/3.13.4/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/local/Cellar/cmake/3.13.4/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
@@ -114,9 +92,31 @@ install/fast: preinstall/fast
 	/usr/local/Cellar/cmake/3.13.4/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/local/Cellar/cmake/3.13.4/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/local/Cellar/cmake/3.13.4/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
+
 # Special rule for the target list_install_components
 list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\" \"assimp-dev\" \"libassimp4.1.0\" \"libassimp4.1.0-dev\""
 .PHONY : list_install_components
 
 # Special rule for the target list_install_components
@@ -155,6 +155,19 @@ preinstall/fast:
 depend:
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
+
+#=============================================================================
+# Target rules for targets named Game-Server
+
+# Build rule for target.
+Game-Server: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Game-Server
+.PHONY : Game-Server
+
+# fast build rule for target.
+Game-Server/fast:
+	$(MAKE) -f CMakeFiles/Game-Server.dir/build.make CMakeFiles/Game-Server.dir/build
+.PHONY : Game-Server/fast
 
 #=============================================================================
 # Target rules for targets named Game-Client
@@ -196,329 +209,30 @@ glfw/fast:
 .PHONY : glfw/fast
 
 #=============================================================================
-# Target rules for targets named heightmap
+# Target rules for targets named IrrXML
 
 # Build rule for target.
-heightmap: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 heightmap
-.PHONY : heightmap
+IrrXML: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 IrrXML
+.PHONY : IrrXML
 
 # fast build rule for target.
-heightmap/fast:
-	$(MAKE) -f libs/glfw/examples/CMakeFiles/heightmap.dir/build.make libs/glfw/examples/CMakeFiles/heightmap.dir/build
-.PHONY : heightmap/fast
+IrrXML/fast:
+	$(MAKE) -f libs/assimp/contrib/irrXML/CMakeFiles/IrrXML.dir/build.make libs/assimp/contrib/irrXML/CMakeFiles/IrrXML.dir/build
+.PHONY : IrrXML/fast
 
 #=============================================================================
-# Target rules for targets named wave
+# Target rules for targets named assimp
 
 # Build rule for target.
-wave: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 wave
-.PHONY : wave
+assimp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 assimp
+.PHONY : assimp
 
 # fast build rule for target.
-wave/fast:
-	$(MAKE) -f libs/glfw/examples/CMakeFiles/wave.dir/build.make libs/glfw/examples/CMakeFiles/wave.dir/build
-.PHONY : wave/fast
-
-#=============================================================================
-# Target rules for targets named splitview
-
-# Build rule for target.
-splitview: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 splitview
-.PHONY : splitview
-
-# fast build rule for target.
-splitview/fast:
-	$(MAKE) -f libs/glfw/examples/CMakeFiles/splitview.dir/build.make libs/glfw/examples/CMakeFiles/splitview.dir/build
-.PHONY : splitview/fast
-
-#=============================================================================
-# Target rules for targets named simple
-
-# Build rule for target.
-simple: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 simple
-.PHONY : simple
-
-# fast build rule for target.
-simple/fast:
-	$(MAKE) -f libs/glfw/examples/CMakeFiles/simple.dir/build.make libs/glfw/examples/CMakeFiles/simple.dir/build
-.PHONY : simple/fast
-
-#=============================================================================
-# Target rules for targets named particles
-
-# Build rule for target.
-particles: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 particles
-.PHONY : particles
-
-# fast build rule for target.
-particles/fast:
-	$(MAKE) -f libs/glfw/examples/CMakeFiles/particles.dir/build.make libs/glfw/examples/CMakeFiles/particles.dir/build
-.PHONY : particles/fast
-
-#=============================================================================
-# Target rules for targets named gears
-
-# Build rule for target.
-gears: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 gears
-.PHONY : gears
-
-# fast build rule for target.
-gears/fast:
-	$(MAKE) -f libs/glfw/examples/CMakeFiles/gears.dir/build.make libs/glfw/examples/CMakeFiles/gears.dir/build
-.PHONY : gears/fast
-
-#=============================================================================
-# Target rules for targets named boing
-
-# Build rule for target.
-boing: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 boing
-.PHONY : boing
-
-# fast build rule for target.
-boing/fast:
-	$(MAKE) -f libs/glfw/examples/CMakeFiles/boing.dir/build.make libs/glfw/examples/CMakeFiles/boing.dir/build
-.PHONY : boing/fast
-
-#=============================================================================
-# Target rules for targets named clipboard
-
-# Build rule for target.
-clipboard: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 clipboard
-.PHONY : clipboard
-
-# fast build rule for target.
-clipboard/fast:
-	$(MAKE) -f libs/glfw/tests/CMakeFiles/clipboard.dir/build.make libs/glfw/tests/CMakeFiles/clipboard.dir/build
-.PHONY : clipboard/fast
-
-#=============================================================================
-# Target rules for targets named title
-
-# Build rule for target.
-title: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 title
-.PHONY : title
-
-# fast build rule for target.
-title/fast:
-	$(MAKE) -f libs/glfw/tests/CMakeFiles/title.dir/build.make libs/glfw/tests/CMakeFiles/title.dir/build
-.PHONY : title/fast
-
-#=============================================================================
-# Target rules for targets named windows
-
-# Build rule for target.
-windows: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 windows
-.PHONY : windows
-
-# fast build rule for target.
-windows/fast:
-	$(MAKE) -f libs/glfw/tests/CMakeFiles/windows.dir/build.make libs/glfw/tests/CMakeFiles/windows.dir/build
-.PHONY : windows/fast
-
-#=============================================================================
-# Target rules for targets named timeout
-
-# Build rule for target.
-timeout: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 timeout
-.PHONY : timeout
-
-# fast build rule for target.
-timeout/fast:
-	$(MAKE) -f libs/glfw/tests/CMakeFiles/timeout.dir/build.make libs/glfw/tests/CMakeFiles/timeout.dir/build
-.PHONY : timeout/fast
-
-#=============================================================================
-# Target rules for targets named threads
-
-# Build rule for target.
-threads: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 threads
-.PHONY : threads
-
-# fast build rule for target.
-threads/fast:
-	$(MAKE) -f libs/glfw/tests/CMakeFiles/threads.dir/build.make libs/glfw/tests/CMakeFiles/threads.dir/build
-.PHONY : threads/fast
-
-#=============================================================================
-# Target rules for targets named gamma
-
-# Build rule for target.
-gamma: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 gamma
-.PHONY : gamma
-
-# fast build rule for target.
-gamma/fast:
-	$(MAKE) -f libs/glfw/tests/CMakeFiles/gamma.dir/build.make libs/glfw/tests/CMakeFiles/gamma.dir/build
-.PHONY : gamma/fast
-
-#=============================================================================
-# Target rules for targets named tearing
-
-# Build rule for target.
-tearing: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 tearing
-.PHONY : tearing
-
-# fast build rule for target.
-tearing/fast:
-	$(MAKE) -f libs/glfw/tests/CMakeFiles/tearing.dir/build.make libs/glfw/tests/CMakeFiles/tearing.dir/build
-.PHONY : tearing/fast
-
-#=============================================================================
-# Target rules for targets named icon
-
-# Build rule for target.
-icon: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 icon
-.PHONY : icon
-
-# fast build rule for target.
-icon/fast:
-	$(MAKE) -f libs/glfw/tests/CMakeFiles/icon.dir/build.make libs/glfw/tests/CMakeFiles/icon.dir/build
-.PHONY : icon/fast
-
-#=============================================================================
-# Target rules for targets named empty
-
-# Build rule for target.
-empty: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 empty
-.PHONY : empty
-
-# fast build rule for target.
-empty/fast:
-	$(MAKE) -f libs/glfw/tests/CMakeFiles/empty.dir/build.make libs/glfw/tests/CMakeFiles/empty.dir/build
-.PHONY : empty/fast
-
-#=============================================================================
-# Target rules for targets named glfwinfo
-
-# Build rule for target.
-glfwinfo: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 glfwinfo
-.PHONY : glfwinfo
-
-# fast build rule for target.
-glfwinfo/fast:
-	$(MAKE) -f libs/glfw/tests/CMakeFiles/glfwinfo.dir/build.make libs/glfw/tests/CMakeFiles/glfwinfo.dir/build
-.PHONY : glfwinfo/fast
-
-#=============================================================================
-# Target rules for targets named msaa
-
-# Build rule for target.
-msaa: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 msaa
-.PHONY : msaa
-
-# fast build rule for target.
-msaa/fast:
-	$(MAKE) -f libs/glfw/tests/CMakeFiles/msaa.dir/build.make libs/glfw/tests/CMakeFiles/msaa.dir/build
-.PHONY : msaa/fast
-
-#=============================================================================
-# Target rules for targets named cursor
-
-# Build rule for target.
-cursor: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 cursor
-.PHONY : cursor
-
-# fast build rule for target.
-cursor/fast:
-	$(MAKE) -f libs/glfw/tests/CMakeFiles/cursor.dir/build.make libs/glfw/tests/CMakeFiles/cursor.dir/build
-.PHONY : cursor/fast
-
-#=============================================================================
-# Target rules for targets named sharing
-
-# Build rule for target.
-sharing: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 sharing
-.PHONY : sharing
-
-# fast build rule for target.
-sharing/fast:
-	$(MAKE) -f libs/glfw/tests/CMakeFiles/sharing.dir/build.make libs/glfw/tests/CMakeFiles/sharing.dir/build
-.PHONY : sharing/fast
-
-#=============================================================================
-# Target rules for targets named monitors
-
-# Build rule for target.
-monitors: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 monitors
-.PHONY : monitors
-
-# fast build rule for target.
-monitors/fast:
-	$(MAKE) -f libs/glfw/tests/CMakeFiles/monitors.dir/build.make libs/glfw/tests/CMakeFiles/monitors.dir/build
-.PHONY : monitors/fast
-
-#=============================================================================
-# Target rules for targets named reopen
-
-# Build rule for target.
-reopen: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 reopen
-.PHONY : reopen
-
-# fast build rule for target.
-reopen/fast:
-	$(MAKE) -f libs/glfw/tests/CMakeFiles/reopen.dir/build.make libs/glfw/tests/CMakeFiles/reopen.dir/build
-.PHONY : reopen/fast
-
-#=============================================================================
-# Target rules for targets named iconify
-
-# Build rule for target.
-iconify: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 iconify
-.PHONY : iconify
-
-# fast build rule for target.
-iconify/fast:
-	$(MAKE) -f libs/glfw/tests/CMakeFiles/iconify.dir/build.make libs/glfw/tests/CMakeFiles/iconify.dir/build
-.PHONY : iconify/fast
-
-#=============================================================================
-# Target rules for targets named joysticks
-
-# Build rule for target.
-joysticks: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 joysticks
-.PHONY : joysticks
-
-# fast build rule for target.
-joysticks/fast:
-	$(MAKE) -f libs/glfw/tests/CMakeFiles/joysticks.dir/build.make libs/glfw/tests/CMakeFiles/joysticks.dir/build
-.PHONY : joysticks/fast
-
-#=============================================================================
-# Target rules for targets named events
-
-# Build rule for target.
-events: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 events
-.PHONY : events
-
-# fast build rule for target.
-events/fast:
-	$(MAKE) -f libs/glfw/tests/CMakeFiles/events.dir/build.make libs/glfw/tests/CMakeFiles/events.dir/build
-.PHONY : events/fast
+assimp/fast:
+	$(MAKE) -f libs/assimp/code/CMakeFiles/assimp.dir/build.make libs/assimp/code/CMakeFiles/assimp.dir/build
+.PHONY : assimp/fast
 
 libs/glad/src/glad.o: libs/glad/src/glad.c.o
 
@@ -547,32 +261,167 @@ libs/glad/src/glad.c.s:
 	$(MAKE) -f CMakeFiles/Game-Client.dir/build.make CMakeFiles/Game-Client.dir/libs/glad/src/glad.c.s
 .PHONY : libs/glad/src/glad.c.s
 
-src/main.o: src/main.cpp.o
+src/graphics/src/mesh.o: src/graphics/src/mesh.cpp.o
 
-.PHONY : src/main.o
+.PHONY : src/graphics/src/mesh.o
 
 # target to build an object file
-src/main.cpp.o:
-	$(MAKE) -f CMakeFiles/Game-Client.dir/build.make CMakeFiles/Game-Client.dir/src/main.cpp.o
-.PHONY : src/main.cpp.o
+src/graphics/src/mesh.cpp.o:
+	$(MAKE) -f CMakeFiles/Game-Client.dir/build.make CMakeFiles/Game-Client.dir/src/graphics/src/mesh.cpp.o
+.PHONY : src/graphics/src/mesh.cpp.o
 
-src/main.i: src/main.cpp.i
+src/graphics/src/mesh.i: src/graphics/src/mesh.cpp.i
 
-.PHONY : src/main.i
+.PHONY : src/graphics/src/mesh.i
 
 # target to preprocess a source file
-src/main.cpp.i:
-	$(MAKE) -f CMakeFiles/Game-Client.dir/build.make CMakeFiles/Game-Client.dir/src/main.cpp.i
-.PHONY : src/main.cpp.i
+src/graphics/src/mesh.cpp.i:
+	$(MAKE) -f CMakeFiles/Game-Client.dir/build.make CMakeFiles/Game-Client.dir/src/graphics/src/mesh.cpp.i
+.PHONY : src/graphics/src/mesh.cpp.i
 
-src/main.s: src/main.cpp.s
+src/graphics/src/mesh.s: src/graphics/src/mesh.cpp.s
 
-.PHONY : src/main.s
+.PHONY : src/graphics/src/mesh.s
 
 # target to generate assembly for a file
-src/main.cpp.s:
-	$(MAKE) -f CMakeFiles/Game-Client.dir/build.make CMakeFiles/Game-Client.dir/src/main.cpp.s
-.PHONY : src/main.cpp.s
+src/graphics/src/mesh.cpp.s:
+	$(MAKE) -f CMakeFiles/Game-Client.dir/build.make CMakeFiles/Game-Client.dir/src/graphics/src/mesh.cpp.s
+.PHONY : src/graphics/src/mesh.cpp.s
+
+src/graphics/src/model.o: src/graphics/src/model.cpp.o
+
+.PHONY : src/graphics/src/model.o
+
+# target to build an object file
+src/graphics/src/model.cpp.o:
+	$(MAKE) -f CMakeFiles/Game-Client.dir/build.make CMakeFiles/Game-Client.dir/src/graphics/src/model.cpp.o
+.PHONY : src/graphics/src/model.cpp.o
+
+src/graphics/src/model.i: src/graphics/src/model.cpp.i
+
+.PHONY : src/graphics/src/model.i
+
+# target to preprocess a source file
+src/graphics/src/model.cpp.i:
+	$(MAKE) -f CMakeFiles/Game-Client.dir/build.make CMakeFiles/Game-Client.dir/src/graphics/src/model.cpp.i
+.PHONY : src/graphics/src/model.cpp.i
+
+src/graphics/src/model.s: src/graphics/src/model.cpp.s
+
+.PHONY : src/graphics/src/model.s
+
+# target to generate assembly for a file
+src/graphics/src/model.cpp.s:
+	$(MAKE) -f CMakeFiles/Game-Client.dir/build.make CMakeFiles/Game-Client.dir/src/graphics/src/model.cpp.s
+.PHONY : src/graphics/src/model.cpp.s
+
+src/graphics/src/shader_loader.o: src/graphics/src/shader_loader.cpp.o
+
+.PHONY : src/graphics/src/shader_loader.o
+
+# target to build an object file
+src/graphics/src/shader_loader.cpp.o:
+	$(MAKE) -f CMakeFiles/Game-Client.dir/build.make CMakeFiles/Game-Client.dir/src/graphics/src/shader_loader.cpp.o
+.PHONY : src/graphics/src/shader_loader.cpp.o
+
+src/graphics/src/shader_loader.i: src/graphics/src/shader_loader.cpp.i
+
+.PHONY : src/graphics/src/shader_loader.i
+
+# target to preprocess a source file
+src/graphics/src/shader_loader.cpp.i:
+	$(MAKE) -f CMakeFiles/Game-Client.dir/build.make CMakeFiles/Game-Client.dir/src/graphics/src/shader_loader.cpp.i
+.PHONY : src/graphics/src/shader_loader.cpp.i
+
+src/graphics/src/shader_loader.s: src/graphics/src/shader_loader.cpp.s
+
+.PHONY : src/graphics/src/shader_loader.s
+
+# target to generate assembly for a file
+src/graphics/src/shader_loader.cpp.s:
+	$(MAKE) -f CMakeFiles/Game-Client.dir/build.make CMakeFiles/Game-Client.dir/src/graphics/src/shader_loader.cpp.s
+.PHONY : src/graphics/src/shader_loader.cpp.s
+
+src/main_loops/src/client_loop.o: src/main_loops/src/client_loop.cpp.o
+
+.PHONY : src/main_loops/src/client_loop.o
+
+# target to build an object file
+src/main_loops/src/client_loop.cpp.o:
+	$(MAKE) -f CMakeFiles/Game-Client.dir/build.make CMakeFiles/Game-Client.dir/src/main_loops/src/client_loop.cpp.o
+.PHONY : src/main_loops/src/client_loop.cpp.o
+
+src/main_loops/src/client_loop.i: src/main_loops/src/client_loop.cpp.i
+
+.PHONY : src/main_loops/src/client_loop.i
+
+# target to preprocess a source file
+src/main_loops/src/client_loop.cpp.i:
+	$(MAKE) -f CMakeFiles/Game-Client.dir/build.make CMakeFiles/Game-Client.dir/src/main_loops/src/client_loop.cpp.i
+.PHONY : src/main_loops/src/client_loop.cpp.i
+
+src/main_loops/src/client_loop.s: src/main_loops/src/client_loop.cpp.s
+
+.PHONY : src/main_loops/src/client_loop.s
+
+# target to generate assembly for a file
+src/main_loops/src/client_loop.cpp.s:
+	$(MAKE) -f CMakeFiles/Game-Client.dir/build.make CMakeFiles/Game-Client.dir/src/main_loops/src/client_loop.cpp.s
+.PHONY : src/main_loops/src/client_loop.cpp.s
+
+src/main_loops/src/server_loop.o: src/main_loops/src/server_loop.cpp.o
+
+.PHONY : src/main_loops/src/server_loop.o
+
+# target to build an object file
+src/main_loops/src/server_loop.cpp.o:
+	$(MAKE) -f CMakeFiles/Game-Server.dir/build.make CMakeFiles/Game-Server.dir/src/main_loops/src/server_loop.cpp.o
+.PHONY : src/main_loops/src/server_loop.cpp.o
+
+src/main_loops/src/server_loop.i: src/main_loops/src/server_loop.cpp.i
+
+.PHONY : src/main_loops/src/server_loop.i
+
+# target to preprocess a source file
+src/main_loops/src/server_loop.cpp.i:
+	$(MAKE) -f CMakeFiles/Game-Server.dir/build.make CMakeFiles/Game-Server.dir/src/main_loops/src/server_loop.cpp.i
+.PHONY : src/main_loops/src/server_loop.cpp.i
+
+src/main_loops/src/server_loop.s: src/main_loops/src/server_loop.cpp.s
+
+.PHONY : src/main_loops/src/server_loop.s
+
+# target to generate assembly for a file
+src/main_loops/src/server_loop.cpp.s:
+	$(MAKE) -f CMakeFiles/Game-Server.dir/build.make CMakeFiles/Game-Server.dir/src/main_loops/src/server_loop.cpp.s
+.PHONY : src/main_loops/src/server_loop.cpp.s
+
+src/network/server/src/server.o: src/network/server/src/server.cpp.o
+
+.PHONY : src/network/server/src/server.o
+
+# target to build an object file
+src/network/server/src/server.cpp.o:
+	$(MAKE) -f CMakeFiles/Game-Server.dir/build.make CMakeFiles/Game-Server.dir/src/network/server/src/server.cpp.o
+.PHONY : src/network/server/src/server.cpp.o
+
+src/network/server/src/server.i: src/network/server/src/server.cpp.i
+
+.PHONY : src/network/server/src/server.i
+
+# target to preprocess a source file
+src/network/server/src/server.cpp.i:
+	$(MAKE) -f CMakeFiles/Game-Server.dir/build.make CMakeFiles/Game-Server.dir/src/network/server/src/server.cpp.i
+.PHONY : src/network/server/src/server.cpp.i
+
+src/network/server/src/server.s: src/network/server/src/server.cpp.s
+
+.PHONY : src/network/server/src/server.s
+
+# target to generate assembly for a file
+src/network/server/src/server.cpp.s:
+	$(MAKE) -f CMakeFiles/Game-Server.dir/build.make CMakeFiles/Game-Server.dir/src/network/server/src/server.cpp.s
+.PHONY : src/network/server/src/server.cpp.s
 
 # Help Target
 help:
@@ -581,45 +430,38 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... install/local"
-	@echo "... rebuild_cache"
-	@echo "... edit_cache"
 	@echo "... install/strip"
 	@echo "... install"
+	@echo "... rebuild_cache"
+	@echo "... edit_cache"
+	@echo "... Game-Server"
 	@echo "... list_install_components"
 	@echo "... Game-Client"
 	@echo "... uninstall"
 	@echo "... glfw"
-	@echo "... heightmap"
-	@echo "... wave"
-	@echo "... splitview"
-	@echo "... simple"
-	@echo "... particles"
-	@echo "... gears"
-	@echo "... boing"
-	@echo "... clipboard"
-	@echo "... title"
-	@echo "... windows"
-	@echo "... timeout"
-	@echo "... threads"
-	@echo "... gamma"
-	@echo "... tearing"
-	@echo "... icon"
-	@echo "... empty"
-	@echo "... glfwinfo"
-	@echo "... msaa"
-	@echo "... cursor"
-	@echo "... sharing"
-	@echo "... monitors"
-	@echo "... reopen"
-	@echo "... iconify"
-	@echo "... joysticks"
-	@echo "... events"
+	@echo "... IrrXML"
+	@echo "... assimp"
 	@echo "... libs/glad/src/glad.o"
 	@echo "... libs/glad/src/glad.i"
 	@echo "... libs/glad/src/glad.s"
-	@echo "... src/main.o"
-	@echo "... src/main.i"
-	@echo "... src/main.s"
+	@echo "... src/graphics/src/mesh.o"
+	@echo "... src/graphics/src/mesh.i"
+	@echo "... src/graphics/src/mesh.s"
+	@echo "... src/graphics/src/model.o"
+	@echo "... src/graphics/src/model.i"
+	@echo "... src/graphics/src/model.s"
+	@echo "... src/graphics/src/shader_loader.o"
+	@echo "... src/graphics/src/shader_loader.i"
+	@echo "... src/graphics/src/shader_loader.s"
+	@echo "... src/main_loops/src/client_loop.o"
+	@echo "... src/main_loops/src/client_loop.i"
+	@echo "... src/main_loops/src/client_loop.s"
+	@echo "... src/main_loops/src/server_loop.o"
+	@echo "... src/main_loops/src/server_loop.i"
+	@echo "... src/main_loops/src/server_loop.s"
+	@echo "... src/network/server/src/server.o"
+	@echo "... src/network/server/src/server.i"
+	@echo "... src/network/server/src/server.s"
 .PHONY : help
 
 

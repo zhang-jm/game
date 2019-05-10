@@ -13,7 +13,22 @@
 
 #include <stdlib.h> //size_t
 #include <stdint.h>
+#include <grpcpp/grpcpp.h>
+#include "actionHandler.grpc.pb.h"
 
+using grpc::Server;
+using grpc::ServerBuilder;
+using grpc::ServerContext;
+using grpc::Status;
+
+class actionHandler final : public actionHandler::Service{
+  Status getInput(ServerContext * context, const Input * input,
+                      Frame * response ) override {
+    response->set_name(GetFeatureName(*point, feature_list_));
+    response->mutable_location()->CopyFrom(*point);
+    return Status::OK;
+  }
+};
 class Server {
   public:
 
@@ -44,22 +59,13 @@ class Server {
 #if DEBUG_MAZE
     void debug_maze();
 #endif
-    /*-------------------------------
-    - Logging functions
-    ---------------------------------*/
-#if LOGGING
-    void server_log();
-#endif
     // Clean up
     void clean_up();
 
 
 
   private:
-    bool          game_started;
-    uint16_t      port;
-    size_t        num_clients;
-
+    ServerBuilder builder;
 };
 
 

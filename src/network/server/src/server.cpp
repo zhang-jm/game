@@ -2,10 +2,6 @@
 
 // TODO stubbed; JUZ
 Server::Server(const uint16_t port, const size_t num_clients)
-  : game_started(true)
-  , port(port)
-  , num_clients(num_clients)
-
   {
     init();
   }
@@ -38,6 +34,9 @@ void Server::init(){
 // declared static to avoid creating instance
 // of Server object in main loop
 void Server::run_server(const uint16_t port, const size_t num_players){
+  std::string server_address("127.0.0.1");
+  builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());
+  
   return;
 }
 // TODO stubbed ; JUZ
