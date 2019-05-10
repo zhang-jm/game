@@ -1,52 +1,60 @@
 #include "server.h"
 
 // TODO stubbed; JUZ
-Server::Server(const uint16_t port, const size_t num_clients)
-  : game_started(true)
-  , port(port)
-  , num_clients(num_clients)
-
-  {
-    init();
-  }
+gameServer::gameServer() {
+}
 
 
 
 // TODO stubbed ; JUZ
-void Server::open(){
+void gameServer::open(){
   return;
 }
 
 // TODO stubbed ; JUZ
-void Server::close(){
+void gameServer::close(){
   return;
 }
 
 // TODO stubbed ; JUZ
-void Server::init_maze(){
+void gameServer::init_maze(){
   return;
 }
 
 // TODO stubbed ; JUZ
-void Server::init(){
+void gameServer::init(){
   init_maze();
   return;
 }
 
-// TODO stubbed ; JUZ
-// since this begins the server loop
-// declared static to avoid creating instance
-// of Server object in main loop
-void Server::run_server(const uint16_t port, const size_t num_players){
+// build gRPC server
+void gameServer::run_server(){
+  std::string server_address("127.0.0.1:4000");
+
+  // create service implementation 
+  // and server builder 
+  actionHandlerImpl service;
+  ServerBuilder builder;
+
+  // Add server info
+  // and bind service
+  builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());
+  builder.RegisterService(&service);
+
+  // start server
+  std::unique_ptr<Server> server(builder.BuildAndStart());
+  cout << "Server listening on " << server_address << std::endl;
+  server->Wait();
+
   return;
 }
 // TODO stubbed ; JUZ
-void Server::clean_up(){
+void gameServer::clean_up(){
 
 }
 
 
 // TODO stubbed ; JUZ
-void Server::step(const float dt){
+void gameServer::step(const float dt){
   return;
 }

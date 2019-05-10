@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+service inputHandler {
+
+  rpc getInput(Input) returns (Frame) {}
+
+}
+
+// Input of player, represented as bit map?
+message Input {
+  int32 testInput = 1;
+}
+
+message Frame {
+  int32 Frame = 1;
+}

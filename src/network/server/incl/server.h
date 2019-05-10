@@ -13,12 +13,43 @@
 
 #include <stdlib.h> //size_t
 #include <stdint.h>
+#include <grpcpp/grpcpp.h>
+#include "actionHandler.grpc.pb.h"
 
-class Server {
+using grpc::Server;
+using grpc::ServerBuilder;
+using grpc::ServerContext;
+using grpc::Status;
+using std::string;
+using std::cout;
+using std::endl;
+
+
+// Service implementations
+class actionHandlerImpl final : public inputHandler::Service {
+  public:
+    // Constructor
+    explicit actionHandlerImpl(){
+
+    }
+
+    // Handle Player input 
+    Status getInput(ServerContext * context, const Input * input,
+                      Frame * response ) override {
+      cout << "Received input : " << input->testinput() << endl;
+      response->set_frame(2);
+      return Status::OK;
+    }
+};
+
+
+
+// Game Server
+class gameServer {
   public:
 
     // Constructor
-    Server(uint16_t port, size_t max_clients);
+    gameServer();
 
     // Initialize game
     void init();
@@ -36,7 +67,7 @@ class Server {
     void step(const float dt);
 
     // server loop
-    static void run_server(const uint16_t port, const size_t num_players);
+    static void run_server();
     /*-------------------------------
     - Debugging functions
     ---------------------------------*/
@@ -44,22 +75,15 @@ class Server {
 #if DEBUG_MAZE
     void debug_maze();
 #endif
-    /*-------------------------------
-    - Logging functions
-    ---------------------------------*/
-#if LOGGING
-    void server_log();
-#endif
     // Clean up
     void clean_up();
 
 
 
   private:
-    bool          game_started;
-    uint16_t      port;
-    size_t        num_clients;
-
+    string              server_address;
+    ServerBuilder       builder;
+  
 };
 
 
