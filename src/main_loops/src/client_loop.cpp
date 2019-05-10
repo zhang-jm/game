@@ -5,6 +5,7 @@
 
 #include <iostream>
 
+#include <utils/input/input_manager.h>
 #include <utils/logging/logging.h>
 #include <graphics/incl/shader_loader.h>
 #include <graphics/incl/model.h>
@@ -22,11 +23,20 @@ glm::vec3 cam_up(0.0f, 1.0f, 0.0f);			// up | What orientation "up" is
 glm::mat4 projection;
 glm::mat4 view;
 
+std::unique_ptr<InputManager> inputManager;
+
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
-	if (key == GLFW_KEY_E && action == GLFW_PRESS) {
-		std::cout << "test" << std::endl;
+    if (inputManager == nullptr) {
+        return;
+    }
+
+	if (action == GLFW_PRESS) {
+        inputManager->setKeyPressed(key);
 	}
+    else if (action == GLFW_RELEASE) {
+        inputManager->setKeyReleased(key);
+    }
 }
 void mouse_click_callback(GLFWwindow* window, int button, int action, int mods)
 {
@@ -67,6 +77,8 @@ int main(int argc, char * argv[]) {
 
 	glfwSetKeyCallback(mWindow, key_callback);
 	glfwSetMouseButtonCallback(mWindow, mouse_click_callback);
+
+    inputManager = std::make_unique<InputManager>();
 
     ShaderLoader loader;
 
