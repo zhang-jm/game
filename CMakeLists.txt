@@ -20,6 +20,8 @@ option(ASSIMP_BUILD_SAMPLES OFF)
 option(ASSIMP_BUILD_TESTS OFF)
 add_subdirectory(libs/assimp)
 
+
+
 if(MSVC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /std:c++17 /permissive- /experimental:external /external:anglebrackets /external:W0 /D NOMINMAX")
 else()
@@ -63,7 +65,27 @@ add_definitions(-DGLFW_INCLUDE_NONE
                 -DPROJECT_SOURCE_DIR=\"${PROJECT_SOURCE_DIR}\")
 
 
+add_subdirectory(./libs/grpc EXCLUDE_FROM_ALL)
+message(STATUS "Using gRPC via add_subdirectory.")
+                
+# After using add_subdirectory, we can now use the grpc targets directly from
+# this build.
+set(_PROTOBUF_LIBPROTOBUF libprotobuf)
+set(_PROTOBUF_PROTOC $<TARGET_FILE:protoc>)
+set(_GRPC_GRPCPP_UNSECURE grpc++_unsecure)
+set(_GRPC_CPP_PLUGIN_EXECUTABLE $<TARGET_FILE:grpc_cpp_plugin>)
 
+# Proto file
+get_filename_component(actionHandler_proto "../../protos/helloworld.proto" ABSOLUTE)
+get_filename_component(actionHandler_proto_path "${hw_proto}" PATH)
+
+# Generated sources
+set(ah_proto_srcs "./src/protos/actionHandler.pb.cc")
+set(ah_proto_hdrs "./src/protos/actionHandler.pb.h")
+set(ah_grpc_srcs "./src/protos/actionHandler.grpc.pb.cc")
+set(ah_grpc_hdrs "./src/protos/actionHandler.grpc.pb.h")
+
+include_directories("./src/protos/")
 ########################################
 # Executables
 ########################################
@@ -80,6 +102,9 @@ add_executable(${PROJECT_NAME}-Server ${SERVER_SOURCES}
 target_link_libraries(${PROJECT_NAME}-Client assimp glfw
                       ${GLFW_LIBRARIES} ${GLAD_LIBRARIES})
 
+target_link_libraries(${PROJECT_NAME}-Server
+                      ${_GRPC_GRPCPP_UNSECURE}
+                      ${_PROTOBUF_LIBPROTOBUF})
 ########################################
 # Includes
 # Note: both libs and includes must go
@@ -100,6 +125,7 @@ target_include_directories(${PROJECT_NAME}-Client PRIVATE ${UTILS_DIR})
 
 target_include_directories(${PROJECT_NAME}-Server PRIVATE ${SERVER_HEADER_DIR})
 target_include_directories(${PROJECT_NAME}-Server PRIVATE ${MAIN_COMMON_HEADER_DIR})
+target_include_directories(${PROJECT_NAME}-Server PRIVATE "./src/protos/")
 
 
 
