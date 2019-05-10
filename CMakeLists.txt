@@ -76,8 +76,8 @@ set(_GRPC_GRPCPP_UNSECURE grpc++_unsecure)
 set(_GRPC_CPP_PLUGIN_EXECUTABLE $<TARGET_FILE:grpc_cpp_plugin>)
 
 # Proto file
-get_filename_component(actionHandler_proto "../../protos/helloworld.proto" ABSOLUTE)
-get_filename_component(actionHandler_proto_path "${hw_proto}" PATH)
+#get_filename_component(actionHandler_proto "../../protos/helloworld.proto" ABSOLUTE)
+#get_filename_component(actionHandler_proto_path "${hw_proto}" PATH)
 
 # Generated sources
 set(ah_proto_srcs "./src/protos/actionHandler.pb.cc")
@@ -91,16 +91,19 @@ include_directories("./src/protos/")
 ########################################
 add_executable(${PROJECT_NAME}-Client ${CLIENT_HEADERS}
                                       ${CLIENT_SOURCES}
-                                      ${VENDORS_SOURCES} src/main_loops/src/client_loop.cpp)
+                                      ${VENDORS_SOURCES}
+                                      ${ah_grpc_srcs} ${ah_proto_srcs} src/main_loops/src/client_loop.cpp)
 
-add_executable(${PROJECT_NAME}-Server ${SERVER_SOURCES}
+add_executable(${PROJECT_NAME}-Server ${SERVER_SOURCES} ${ah_grpc_srcs} ${ah_proto_srcs}
                                       src/main_loops/src/server_loop.cpp)
 
 ########################################
 # Libraries
 ########################################
 target_link_libraries(${PROJECT_NAME}-Client assimp glfw
-                      ${GLFW_LIBRARIES} ${GLAD_LIBRARIES})
+                      ${GLFW_LIBRARIES} ${GLAD_LIBRARIES}
+                      ${_GRPC_GRPCPP_UNSECURE}
+                      ${_PROTOBUF_LIBPROTOBUF})
 
 target_link_libraries(${PROJECT_NAME}-Server
                       ${_GRPC_GRPCPP_UNSECURE}
@@ -118,6 +121,7 @@ target_link_libraries(${PROJECT_NAME}-Server
 target_include_directories(${PROJECT_NAME}-Client PRIVATE ${GRAPHICS_HEADER_DIR})
 target_include_directories(${PROJECT_NAME}-Client PRIVATE ${MAIN_COMMON_HEADER_DIR})
 target_include_directories(${PROJECT_NAME}-Client PRIVATE ${UTILS_DIR})
+target_include_directories(${PROJECT_NAME}-Server PRIVATE "./src/protos/")
 
 ########################################
 # Server Includes

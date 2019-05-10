@@ -10,6 +10,20 @@
 #include <graphics/incl/shader_loader.h>
 #include <graphics/incl/model.h>
 
+#include <grpcpp/grpcpp.h>
+#include <grpcpp/channel.h>
+#include <grpcpp/client_context.h>
+#include <grpcpp/create_channel.h>
+#include <grpcpp/security/credentials.h>
+#include <protos/actionHandler.grpc.pb.h>
+
+using grpc::Channel;
+using grpc::ClientContext;
+using grpc::ClientReader;
+using grpc::ClientReaderWriter;
+using grpc::ClientWriter;
+using grpc::Status;
+
 const int window_width = 1280;
 const int window_height = 800;
 
@@ -79,6 +93,18 @@ int main(int argc, char * argv[]) {
 	glfwSetMouseButtonCallback(mWindow, mouse_click_callback);
 
     inputManager = std::make_unique<InputManager>();
+
+    std::shared_ptr<Channel> channel = grpc::CreateChannel("127.0.0.1:4000",
+        grpc::InsecureChannelCredentials());
+    std::unique_ptr<inputHandler::Stub> stub_(inputHandler::NewStub(channel));
+    
+    ClientContext context;
+    Input input;
+    input.set_testinput(1);
+    Frame frame;
+    Status status = stub_->getInput(&context, input, &frame);
+
+    LOG.debug("frame : {}", frame.frame());
 
     ShaderLoader loader;
 
