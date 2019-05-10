@@ -20,20 +20,36 @@ using grpc::Server;
 using grpc::ServerBuilder;
 using grpc::ServerContext;
 using grpc::Status;
+using std::string;
+using std::cout;
+using std::endl;
 
-class actionHandler final : public actionHandler::Service{
-  Status getInput(ServerContext * context, const Input * input,
+
+// Service implementations
+class actionHandlerImpl final : public inputHandler::Service {
+  public:
+    // Constructor
+    explicit actionHandlerImpl(){
+
+    }
+
+    // Handle Player input 
+    Status getInput(ServerContext * context, const Input * input,
                       Frame * response ) override {
-    response->set_name(GetFeatureName(*point, feature_list_));
-    response->mutable_location()->CopyFrom(*point);
-    return Status::OK;
-  }
+      cout << "Received input : " << input->testinput() << endl;
+      response->set_frame(2);
+      return Status::OK;
+    }
 };
-class Server {
+
+
+
+// Game Server
+class gameServer {
   public:
 
     // Constructor
-    Server(uint16_t port, size_t max_clients);
+    gameServer();
 
     // Initialize game
     void init();
@@ -51,7 +67,7 @@ class Server {
     void step(const float dt);
 
     // server loop
-    static void run_server(const uint16_t port, const size_t num_players);
+    static void run_server();
     /*-------------------------------
     - Debugging functions
     ---------------------------------*/
@@ -65,7 +81,9 @@ class Server {
 
 
   private:
-    ServerBuilder builder;
+    string              server_address;
+    ServerBuilder       builder;
+  
 };
 
 
