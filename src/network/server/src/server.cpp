@@ -34,9 +34,10 @@ void Server::init(){
 // declared static to avoid creating instance
 // of Server object in main loop
 void Server::run_server(const uint16_t port, const size_t num_players){
-  std::string server_address("127.0.0.1");
+  std::string server_address("127.0.0.1:4000");
+  actionHandlerImpl service(&actionHandlerService);
   builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());
-  
+  builder.RegisterService(&service);
   return;
 }
 // TODO stubbed ; JUZ
