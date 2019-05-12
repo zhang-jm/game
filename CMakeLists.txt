@@ -6,7 +6,7 @@ project(Game)
 set(MAIN_COMMON_HEADER_DIR "src/main_loops/incl")
 
 set(GRAPHICS_HEADER_DIR "src/graphics")
-set(UTILS_DIR "src/utils/logging")
+set(UTILS_DIR "src/utils/*")
 set(SERVER_BASE "src/network/server")
 set(SERVER_HEADER_DIR "${SERVER_BASE}/incl")
 
