@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+service ObjectHandler{
+  rpc initPlayer(PlayerParams) returns (PlayerInfo) {}
+  rpc getPlayers(PlayerParams) returns (Players) {}
+}
+
+message PlayerParams {}
+
+message Point {
+  float x = 1;
+  float y = 2;
+  float z = 3;
+}
+
+message PlayerInfo {
+  uint32 id = 1;
+  Point position = 2;
+  uint32 health = 3;
+}
+
+message Players {
+  map<uint32, PlayerInfo> players = 1;
+}

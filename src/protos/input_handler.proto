@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+service InputHandler {
+  rpc sendInput(Input) returns (InputResponse) {}
+}
+
+// input of player from client
+message Input {
+  uint32 inputKey = 1;
+
+  enum InputAction {
+    KEY_PRESS = 0;
+    KEY_RELEASE = 1;
+  }
+
+  InputAction action = 2;
+}
+
+message InputResponse {}

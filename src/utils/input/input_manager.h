@@ -4,6 +4,10 @@
 #include <map>
 #include <array>
 
+#include <grpcpp/grpcpp.h>
+#include <protos/input_handler.grpc.pb.h>
+#include <utils/logging/logging.h>
+
 #define NUMKEYS 350
 
 enum Keys {
@@ -13,15 +17,20 @@ enum Keys {
     MOVE_RIGHT
 };
 
-class InputManager {
+
+class InputManager final : public InputHandler::Service {
 public:
-    InputManager();
+    explicit InputManager();
     ~InputManager();
 
     void initDefaultKeys();
 
     void setKeyPressed(int keyID);
     void setKeyReleased(int keyID);
+
+    // Handle Player input 
+    grpc::Status sendInput(grpc::ServerContext * context, const Input * input,
+        InputResponse * response) override;
 
 private:
     std::map<Keys, int> keyMap;

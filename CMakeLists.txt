@@ -43,8 +43,10 @@ file(GLOB CLIENT_HEADERS ${GRAPHICS_HEADER_DIR}/incl/*.h
                          ${UTILS_DIR}/*.h)
 file(GLOB CLIENT_SOURCES ${GRAPHICS_HEADER_DIR}/src/*.cpp
                          ${UTILS_DIR}/*.cpp)
-file(GLOB SERVER_HEADERS ${SERVER_BASE}/incl/*.h)
-file(GLOB SERVER_SOURCES ${SERVER_BASE}/src/*.cpp)
+file(GLOB SERVER_HEADERS ${SERVER_BASE}/incl/*.h
+                         ${UTILS_DIR}/*.h)
+file(GLOB SERVER_SOURCES ${SERVER_BASE}/src/*.cpp
+                         ${UTILS_DIR}/*.cpp)
 
 #file(GLOB PROJECT_SHADERS src/graphics/*.comp
 #                          src/graphics/*.frag
@@ -80,10 +82,15 @@ set(_GRPC_CPP_PLUGIN_EXECUTABLE $<TARGET_FILE:grpc_cpp_plugin>)
 #get_filename_component(actionHandler_proto_path "${hw_proto}" PATH)
 
 # Generated sources
-set(ah_proto_srcs "./src/protos/actionHandler.pb.cc")
-set(ah_proto_hdrs "./src/protos/actionHandler.pb.h")
-set(ah_grpc_srcs "./src/protos/actionHandler.grpc.pb.cc")
-set(ah_grpc_hdrs "./src/protos/actionHandler.grpc.pb.h")
+set(PROTOS_DIR "src/protos")
+file(GLOB PROTO_SRCS ${PROTOS_DIR}/*.pb.cc)
+file(GLOB PROTO_HDRS ${PROTOS_DIR}/src/*.pb.h)
+file(GLOB GRPC_SRCS ${PROTOS_DIR}/*.grpc.pb.cc)
+file(GLOB GRPC_HDRS ${PROTOS_DIR}/*.grpc.pb.h)
+#set(ah_proto_srcs "./src/protos/input_handler.pb.cc")
+#set(ah_proto_hdrs "./src/protos/input_handler.pb.h")
+#set(ah_grpc_srcs "./src/protos/input_handler.grpc.pb.cc")
+#set(ah_grpc_hdrs "./src/protos/input_handler.grpc.pb.h")
 
 include_directories("./src/protos/")
 ########################################
@@ -92,9 +99,9 @@ include_directories("./src/protos/")
 add_executable(${PROJECT_NAME}-Client ${CLIENT_HEADERS}
                                       ${CLIENT_SOURCES}
                                       ${VENDORS_SOURCES}
-                                      ${ah_grpc_srcs} ${ah_proto_srcs} src/main_loops/src/client_loop.cpp)
+                                      ${GRPC_SRCS} ${PROTO_SRCS} src/main_loops/src/client_loop.cpp)
 
-add_executable(${PROJECT_NAME}-Server ${SERVER_SOURCES} ${ah_grpc_srcs} ${ah_proto_srcs}
+add_executable(${PROJECT_NAME}-Server ${SERVER_SOURCES} ${GRPC_SRCS} ${PROTO_SRCS}
                                       src/main_loops/src/server_loop.cpp)
 
 ########################################
@@ -134,6 +141,7 @@ target_include_directories(${PROJECT_NAME}-Server PRIVATE "./src/protos/")
 
 
 #protoc -I . --grpc_out=. --plugin=protoc-gen-grpc=../../libs/grpc/bins/opt/grpc_cpp_plugin actionHandler.proto
+#protoc -I . --grpc_out=. --plugin=protoc-gen-grpc=../../libs/grpc/.build/Release/grpc_cpp_plugin.exe actionHandler.proto <- windows
 #protoc -I . --cpp_out=. actionHandler.proto
 # above  ran in proto folder to make code
 ########################################

@@ -15,7 +15,7 @@
 #include <grpcpp/client_context.h>
 #include <grpcpp/create_channel.h>
 #include <grpcpp/security/credentials.h>
-#include <protos/actionHandler.grpc.pb.h>
+#include <protos/input_handler.grpc.pb.h>
 
 using grpc::Channel;
 using grpc::ClientContext;
@@ -37,19 +37,31 @@ glm::vec3 cam_up(0.0f, 1.0f, 0.0f);			// up | What orientation "up" is
 glm::mat4 projection;
 glm::mat4 view;
 
-std::unique_ptr<InputManager> inputManager;
+std::unique_ptr<InputHandler::Stub> stub_;
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
-    if (inputManager == nullptr) {
+    ClientContext context;
+    Input input;
+    input.set_inputkey(key);
+
+    if (action == GLFW_PRESS) {
+        input.set_action(Input::InputAction::Input_InputAction_KEY_PRESS);
+    }
+    else if (action == GLFW_RELEASE) {
+        input.set_action(Input::InputAction::Input_InputAction_KEY_RELEASE);
+    }
+    else {
         return;
     }
 
-	if (action == GLFW_PRESS) {
-        inputManager->setKeyPressed(key);
-	}
-    else if (action == GLFW_RELEASE) {
-        inputManager->setKeyReleased(key);
+    InputResponse response;
+    Status status = stub_->sendInput(&context, input, &response);
+    if (!status.ok()) {
+        LOG.error("Error sending input: {} {}", status.error_code(), status.error_message());
+    }
+    else {
+        LOG.error("Input sent");
     }
 }
 void mouse_click_callback(GLFWwindow* window, int button, int action, int mods)
@@ -92,20 +104,11 @@ int main(int argc, char * argv[]) {
 	glfwSetKeyCallback(mWindow, key_callback);
 	glfwSetMouseButtonCallback(mWindow, mouse_click_callback);
 
-    inputManager = std::make_unique<InputManager>();
-
     std::shared_ptr<Channel> channel = grpc::CreateChannel("127.0.0.1:4000",
         grpc::InsecureChannelCredentials());
-    std::unique_ptr<inputHandler::Stub> stub_(inputHandler::NewStub(channel));
+    //std::unique_ptr<inputHandler::Stub> stub_(inputHandler::NewStub(channel));
+    stub_ = InputHandler::NewStub(channel);
     
-    ClientContext context;
-    Input input;
-    input.set_testinput(1);
-    Frame frame;
-    Status status = stub_->getInput(&context, input, &frame);
-
-    LOG.debug("frame : {}", frame.frame());
-
     ShaderLoader loader;
 
     projection = glm::perspective(45.0f, (float)window_width / (float)window_height, 0.1f, 1000.0f);

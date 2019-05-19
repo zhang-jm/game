@@ -14,34 +14,12 @@
 #include <stdlib.h> //size_t
 #include <stdint.h>
 #include <grpcpp/grpcpp.h>
-#include "actionHandler.grpc.pb.h"
 
 using grpc::Server;
 using grpc::ServerBuilder;
-using grpc::ServerContext;
-using grpc::Status;
 using std::string;
 using std::cout;
 using std::endl;
-
-
-// Service implementations
-class actionHandlerImpl final : public inputHandler::Service {
-  public:
-    // Constructor
-    explicit actionHandlerImpl(){
-
-    }
-
-    // Handle Player input 
-    Status getInput(ServerContext * context, const Input * input,
-                      Frame * response ) override {
-      cout << "Received input : " << input->testinput() << endl;
-      response->set_frame(2);
-      return Status::OK;
-    }
-};
-
 
 
 // Game Server
@@ -78,13 +56,10 @@ class gameServer {
     // Clean up
     void clean_up();
 
-
-
   private:
     string              server_address;
     ServerBuilder       builder;
   
 };
-
 
 #endif

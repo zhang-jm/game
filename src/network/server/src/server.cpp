@@ -1,10 +1,10 @@
 #include "server.h"
 
+#include <utils/input/input_manager.h>
+
 // TODO stubbed; JUZ
 gameServer::gameServer() {
 }
-
-
 
 // TODO stubbed ; JUZ
 void gameServer::open(){
@@ -33,7 +33,7 @@ void gameServer::run_server(){
 
   // create service implementation 
   // and server builder 
-  actionHandlerImpl service;
+  InputManager service;
   ServerBuilder builder;
 
   // Add server info
