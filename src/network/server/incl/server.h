@@ -11,9 +11,12 @@
 - SYSTEM INCLUDES
 -----------------------------------*/
 
+#include <map>
 #include <stdlib.h> //size_t
 #include <stdint.h>
 #include <grpcpp/grpcpp.h>
+#include <protos/object_handler.grpc.pb.h>
+#include <network/server/incl/server_player.h>
 
 using grpc::Server;
 using grpc::ServerBuilder;
@@ -21,19 +24,26 @@ using std::string;
 using std::cout;
 using std::endl;
 
+#define MAX_PLAYERS 4
 
 // Game Server
-class gameServer {
+class GameServer final : public ObjectHandler::Service {
   public:
 
     // Constructor
-    gameServer();
+    GameServer();
 
     // Initialize game
     void init();
 
     // Create random maze
     void init_maze();
+
+    grpc::Status initPlayer(grpc::ServerContext * context, const PlayerParams * input,
+        PlayerInfo * response) override;
+
+    grpc::Status getPlayers(grpc::ServerContext * context, const PlayerParams * input,
+        Players * response) override;
 
     // Begin player connections phase
     void open();
@@ -57,8 +67,11 @@ class gameServer {
     void clean_up();
 
   private:
+    int current_player_id;
     string              server_address;
     ServerBuilder       builder;
+
+    std::map<int, ServerPlayer *> player_map;
   
 };
 

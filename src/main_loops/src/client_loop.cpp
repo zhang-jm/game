@@ -16,6 +16,7 @@
 #include <grpcpp/create_channel.h>
 #include <grpcpp/security/credentials.h>
 #include <protos/input_handler.grpc.pb.h>
+#include <protos/object_handler.grpc.pb.h>
 
 using grpc::Channel;
 using grpc::ClientContext;
@@ -37,7 +38,8 @@ glm::vec3 cam_up(0.0f, 1.0f, 0.0f);			// up | What orientation "up" is
 glm::mat4 projection;
 glm::mat4 view;
 
-std::unique_ptr<InputHandler::Stub> stub_;
+std::unique_ptr<InputHandler::Stub> input_handler_stub;
+std::unique_ptr<ObjectHandler::Stub> object_handler_stub;
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
@@ -56,7 +58,7 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
     }
 
     InputResponse response;
-    Status status = stub_->sendInput(&context, input, &response);
+    Status status = input_handler_stub->sendInput(&context, input, &response);
     if (!status.ok()) {
         LOG.error("Error sending input: {} {}", status.error_code(), status.error_message());
     }
@@ -107,8 +109,24 @@ int main(int argc, char * argv[]) {
     std::shared_ptr<Channel> channel = grpc::CreateChannel("127.0.0.1:4000",
         grpc::InsecureChannelCredentials());
     //std::unique_ptr<inputHandler::Stub> stub_(inputHandler::NewStub(channel));
-    stub_ = InputHandler::NewStub(channel);
-    
+    input_handler_stub = InputHandler::NewStub(channel);
+    object_handler_stub = ObjectHandler::NewStub(channel);
+
+    ClientContext context;
+    PlayerParams params;
+    PlayerInfo thisPlayerInfo;
+    grpc::Status status = object_handler_stub->initPlayer(&context, params, &thisPlayerInfo);
+
+    if (!status.ok()) {
+        LOG.error("Error initializing player: {} {}", status.error_code(), status.error_message());
+        return -1;
+    }
+
+    LOG.debug("Player initialied with ID {} at position ({},{},{})", thisPlayerInfo.id(), 
+        thisPlayerInfo.position().x(), thisPlayerInfo.position().y(), thisPlayerInfo.position().z());
+
+    //TODO : create client player
+
     ShaderLoader loader;
 
     projection = glm::perspective(45.0f, (float)window_width / (float)window_height, 0.1f, 1000.0f);
